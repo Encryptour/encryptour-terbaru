@@ -1,0 +1,9 @@
+
+[
+        {"category" : "proker", "title" : "Proker Event 1","img":"assets/foto-angkatan(1).JPG"},
+        {"category" : "prestasi", "title" : "Prestasi Award 1","img":"assets/foto-angkatan(1).JPG"},
+        {"category" : "tweets", "title" : "Tweet Update 1","img":"assets/foto-angkatan(1).JPG"},
+        {"category" : "proker", "title" : "Proker Event 2","img":"assets/foto-angkatan(1).JPG"},
+        {"category" : "prestasi", "title" : "Prestasi Award 2","img":"assets/foto-angkatan(1).JPG"},
+        {"category" : "tweets", "title" : "Tweet Update 2","img":"assets/foto-angkatan(1).JPG"}
+]

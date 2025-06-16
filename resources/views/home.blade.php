@@ -14,20 +14,20 @@
                             class="text-2xl md:text-5xl drop-shadow-2xl rounded-xl bg-black/5 p-4 backdrop-blur-[1px] font-bold font-montserrat text-vanilla">
                             WELCOME TO OUR PAGE</h1>
                     </div>
-                    <img src="{{ asset('assets/carousel/foto-angkatan(1).JPG') }}"
+                    <img src="{{ asset('storage/carousel/foto-angkatan(1).JPG') }}"
                         class="object-center h-full object-cover relative w-full" alt="Image 1">
                 </div>
                 <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
-                    <img src="{{ asset('assets/carousel/foto-angkatan(2).JPG') }}"
+                    <img src="{{ asset('storage/carousel/foto-angkatan(2).JPG') }}"
                         class="w-full object-center h-full object-cover" alt="Image 2">
                 </div>
                 <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
 
-                    <img src="{{ asset('assets/carousel/foto-angkatan(3).JPG') }}"
+                    <img src="{{ asset('storage/carousel/foto-angkatan(3).JPG') }}"
                         class="w-full object-center h-full object-cover" alt="Image 2">
                 </div>
                 <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
-                    <img src="{{ asset('assets/carousel/foto-angkatan(4).JPG') }}"
+                    <img src="{{ asset('storage/carousel/foto-angkatan(4).JPG') }}"
                         class="w-full object-center h-full object-cover" alt="Image 2">
                 </div>
 

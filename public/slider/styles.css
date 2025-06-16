@@ -194,7 +194,7 @@ body {
 /*foto*/
 
 .foto {
-    background: url("/assets/carousel/foto-angkatan(1).jpg");
+    background: url("/storage/carousel/foto-angkatan(1).jpg");
     width: 100%;
     height: 100vh;
     position: relative;

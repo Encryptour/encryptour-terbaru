@@ -1,7 +1,3 @@
-@php
-    $jsonPath = public_path('assets/data-gallery.json'); // Path ke JSON file
-    $items = json_decode(file_get_contents($jsonPath), true); // Decode JSON ke array
-@endphp
 
 <x-app-layout class="bg-vanilla">
     <section id="carousel-gambar">
@@ -18,20 +14,20 @@
                             class="text-2xl md:text-5xl drop-shadow-2xl rounded-xl bg-black/5 p-4 backdrop-blur-[1px] font-bold font-montserrat text-vanilla">
                             WELCOME TO OUR PAGE</h1>
                     </div>
-                    <img src="{{ asset('assets/foto-angkatan(1).JPG') }}"
+                    <img src="{{ asset('assets/carousel/foto-angkatan(1).JPG') }}"
                         class="object-center h-full object-cover relative w-full" alt="Image 1">
                 </div>
                 <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
-                    <img src="{{ asset('assets/foto-angkatan(1).JPG') }}"
+                    <img src="{{ asset('assets/carousel/foto-angkatan(2).JPG') }}"
                         class="w-full object-center h-full object-cover" alt="Image 2">
                 </div>
                 <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
 
-                    <img src="{{ asset('assets/foto-angkatan(1).JPG') }}"
+                    <img src="{{ asset('assets/carousel/foto-angkatan(3).JPG') }}"
                         class="w-full object-center h-full object-cover" alt="Image 2">
                 </div>
                 <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
-                    <img src="{{ asset('assets/foto-angkatan(1).JPG') }}"
+                    <img src="{{ asset('assets/carousel/foto-angkatan(4).JPG') }}"
                         class="w-full object-center h-full object-cover" alt="Image 2">
                 </div>
 
@@ -208,19 +204,19 @@
             </script>
 
             <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
-                @foreach ($items as $item)
+                @foreach ($data as $item)
                     <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden"
                         data-category="{{ $item['category'] }}">
-                        <div
+                        {{-- <div
                             class="h-full bg-mocca flex justify-center items-center text-3xl text-vanilla text-center font-bold w-full">
                             COMING SOON!
-                        </div>
+                        </div> --}}
                         {{-- <img src="{{ asset($item['img']) }}" alt="Gallery Image" class="w-full"> --}}
-                        <div class="p-4">
+                        <div class="p-4 bg-mocca">
                             <span
                                 class="text-sm bg-mocca/20 text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item['category'] }}</span>
                             <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
-                            <p class="text-gray-600 text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing
+                            <p class="text-white text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing
                                 elit.
                             </p>
                             <a href="#"
@@ -235,7 +231,7 @@
             <div class="lg:hidden">
                 <div class="swiper">
                     <div class="swiper-wrapper">
-                        @foreach ($items as $item)
+                        @foreach ($data as $item)
                             <div class="swiper-slide swiper-slides relative">
                                 <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden">
                                     <!-- Semua overlay -->

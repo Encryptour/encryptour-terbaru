@@ -7,9 +7,7 @@ Route::get('/identity', function () {
     return view('identity');
 });
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/biodata', [BiodataController::class, 'index']);
 

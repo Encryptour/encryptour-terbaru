@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,8 +14,12 @@ class HomeController extends Controller
         $count = 6;
 
         $galleries = Gallery::inRandomOrder()->paginate($count);
+        $carousel = Carousel::all();
         return view('home',[
             'data' => $galleries,
+            'carousels' => $carousel,
         ]);
+
+
     }
 }

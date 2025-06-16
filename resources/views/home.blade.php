@@ -1,4 +1,3 @@
-
 <x-app-layout class="bg-vanilla">
     <section id="carousel-gambar">
         {{-- carousel gambar --}}
@@ -6,9 +5,8 @@
             <!-- Carousel Wrapper -->
             <div id="carousel-items" class="flex transition-all duration-500">
                 <!-- Carousel Items -->
-                <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
-                    <div
-                        class="w-full h-[80vh] md:h-[70vh] flex justify-center items-center bg-gradient-to-b absolute
+                {{-- <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
+                    <div class="w-full h-[80vh] md:h-[70vh] flex justify-center items-center bg-gradient-to-b absolute
                  z-10 from-black/50 from- via-transparent to-black-30">
                         <h1
                             class="text-2xl md:text-5xl drop-shadow-2xl rounded-xl bg-black/5 p-4 backdrop-blur-[1px] font-bold font-montserrat text-vanilla">
@@ -29,7 +27,24 @@
                 <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0">
                     <img src="{{ asset('storage/carousel/foto-angkatan(4).JPG') }}"
                         class="w-full object-center h-full object-cover" alt="Image 2">
-                </div>
+                </div> --}}
+
+                    @foreach ($carousels as $index => $item)
+                        <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0 relative snap-center">
+                            @if ($index === 0)
+                                <div
+                                    class="w-full h-full flex justify-center items-center bg-gradient-to-b absolute z-10 from-black/50 via-transparent to-black/30">
+                                    <h1
+                                        class="text-2xl md:text-5xl drop-shadow-2xl rounded-xl bg-black/5 p-4 backdrop-blur-[1px] font-bold font-montserrat text-vanilla">
+                                        WELCOME TO OUR PAGE
+                                    </h1>
+                                </div>
+                            @endif
+                            <img src="{{ asset('storage/carousel/' . $item->img) }}"
+                                class="object-center h-full object-cover w-full relative" alt="Image {{ $index + 1 }}">
+                        </div>
+                    @endforeach
+
 
                 <!-- Add more items as needed -->
             </div>
@@ -50,87 +65,101 @@
 
     <section id="aboutUs">
         <div class="slider w-screen max-w-full xl:h-[600px] h-[500px] mx-auto relative overflow-hidden">
-             <button id="prev1"
-                    class="absolute top-1/2 left-4 md:left-16 z-50 -translate-y-1/2 font-mono text-lg hover:text-2xl text-chocolate rounded-full">
-                    < </button>
-             <button id="next1"
-                    class="absolute top-1/2 right-4 md:right-16 z-50 -translate-y-1/2 font-mono text-lg hover:text-2xl text-chocolate rounded-full">
-                    > </button>
-             
-            <div class="list absolute w-max h-full left-0 top-0 flex transition duration-1000">
-               
+            <button id="prev1"
+                class="absolute top-1/2 left-4 md:left-16 z-50 -translate-y-1/2 font-mono text-lg hover:text-2xl text-chocolate rounded-full">
+                < </button>
+                    <button id="next1"
+                        class="absolute top-1/2 right-4 md:right-16 z-50 -translate-y-1/2 font-mono text-lg hover:text-2xl text-chocolate rounded-full">
+                        > </button>
+
+                    <div class="list absolute w-max h-full left-0 top-0 flex transition duration-1000">
+
                         <div class="item w-screen flex justify-center max-w-full py-24">
                             <div
                                 class="w-[90vw] lg:w-[65vw] relative xl:w-[80vw] grid grid-cols-12 items-center shadow-2xl shadow-chocolate bg-mocca bg-opacity-10 rounded-3xl xl:px-24 text-justify text-chocolate">
-                                
+
                                 <div class="flex items-center col-span-10 md:pr-8">
                                     <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
                                         class="w-auto h-[150px] md:h-[300px] xl:h-[400px]">
                                     <h2 class="text-4xl font-bold">About Us</h2>
                                 </div>
-                              
+
                             </div>
                         </div>
                         <div class="item w-screen flex justify-center max-w-full py-24">
                             <div
                                 class="w-[90vw] lg:w-[65vw] xl:w-[80vw] grid grid-cols-12 items-center shadow-2xl shadow-chocolate bg-mocca bg-opacity-10 rounded-3xl xl:px-24 text-justify text-chocolate">
-                                
+
                                 <div class="flex items-center col-span-10 pr-8">
                                     <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
                                         class="w-auto h-[150px] md:h-[300px] xl:h-[400px]">
-                                    <p class="md:text-2xl">ENCRYPTOUR (enkriptour) memiliki akronim yaitu ENgineers of Computer, Young
+                                    <p class="md:text-2xl">ENCRYPTOUR (enkriptour) memiliki akronim yaitu ENgineers of
+                                        Computer, Young
                                         Pioneers Twenty fOUR.</p>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="item w-screen flex justify-center max-w-full py-24">
                             <div
                                 class="w-[90vw] lg:w-[65vw] xl:w-[80vw] grid grid-cols-12 items-center shadow-2xl shadow-chocolate bg-mocca bg-opacity-10 rounded-3xl xl:px-24 text-justify text-chocolate">
-                               
+
                                 <div class="flex items-center col-span-10 pr-8">
                                     <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
                                         class="w-auto h-[150px] md:h-[300px] xl:h-[400px]">
-                                    <p class="md:text-2xl">Diambil dari kata “enkripsi” yang artinya melindungi suatu data.</p>
+                                    <p class="md:text-2xl">Diambil dari kata “enkripsi” yang artinya melindungi suatu
+                                        data.</p>
                                 </div>
-                               
+
                             </div>
                         </div>
                         <div class="item w-screen flex justify-center max-w-full py-24">
                             <div
                                 class="w-[90vw] lg:w-[65vw] xl:w-[80vw] grid grid-cols-12 items-center shadow-2xl shadow-chocolate bg-mocca bg-opacity-10 rounded-3xl xl:px-24 text-justify text-chocolate">
-                                
+
                                 <div class="flex items-center col-span-10 pr-8">
                                     <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
                                         class="w-auto h-[150px] md:h-[300px] xl:h-[400px]">
-                                    <p class="md:text-2xl">Young Pioneer maksudnya adalah kami penggerak muda dari Teknik Komputer angkatan
+                                    <p class="md:text-2xl">Young Pioneer maksudnya adalah kami penggerak muda dari
+                                        Teknik Komputer angkatan
                                         2024.</p>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="item w-screen flex justify-center max-w-full py-24">
                             <div
                                 class="w-[90vw] lg:w-[65vw] xl:w-[80vw] grid grid-cols-12 items-center shadow-2xl shadow-chocolate bg-mocca bg-opacity-10 rounded-3xl xl:px-24 text-justify text-chocolate">
-                              
+
                                 <div class="flex items-center col-span-10 pr-8">
                                     <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
                                         class="w-auto h-[150px] md:h-[300px] xl:h-[400px]">
-                                    <p class="md:text-2xl">Kami sebagai angkatan memiliki keharusan dan tanggung jawab dalam saling
+                                    <p class="md:text-2xl">Kami sebagai angkatan memiliki keharusan dan tanggung jawab
+                                        dalam saling
                                         melindungi satu sama lain.</p>
                                 </div>
-                             
+
                             </div>
                         </div>
-            </div>
-            <ul class="dots absolute bottom-[100px] left-0 text-white w-full m-0 p-0 flex justify-center transition-all">
-                <li class="active list-none w-[10px] h-[10px] bg-chocolate m-[10px] rounded-[20px] transition duration-500">
-                </li>
-                <li class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500"></li>
-                <li class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500"></li>
-                <li class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500"></li>
-                <li class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500"></li>
-            </ul>
+                    </div>
+                    <ul
+                        class="dots absolute bottom-[100px] left-0 text-white w-full m-0 p-0 flex justify-center transition-all">
+                        <li
+                            class="active list-none w-[10px] h-[10px] bg-chocolate m-[10px] rounded-[20px] transition duration-500">
+                        </li>
+                        <li
+                            class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500">
+                        </li>
+                        <li
+                            class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500">
+                        </li>
+                        <li
+                            class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500">
+                        </li>
+                        <li
+                            class="list-none w-[10px] h-[10px] bg-white m-[10px] rounded-[20px] transition duration-500">
+                        </li>
+                    </ul>
         </div>
     </section>
 
@@ -219,8 +248,7 @@
                             <p class="text-white text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing
                                 elit.
                             </p>
-                            <a href="#"
-                                class="text-[#66391c] font-bold text-sm mt-4 inline-block hover:underline">see
+                            <a href="#" class="text-[#66391c] font-bold text-sm mt-4 inline-block hover:underline">see
                                 more →</a>
                         </div>
                     </div>
@@ -401,8 +429,8 @@
                         </div>
                         <div class="w-full absolute rounded-2xl h-full bg-mocca shadow-lg overflow-hidden ">
 
-                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}" class=" object-cover w-full h-full object-center"
-                                alt="foto-angkatan2"> --}}
+                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}"
+                                class=" object-cover w-full h-full object-center" alt="foto-angkatan2"> --}}
                             <img src="{{ asset('assets/maintenance.png') }}"
                                 class="transition-all -left-1/3 top-1/4 md:left-0 md:top-0 absolute animate-spin-slow duration-1000 "
                                 alt="">
@@ -430,8 +458,8 @@
                             </p>
                         </div>
                         <div class="w-full absolute rounded-2xl h-full bg-mocca shadow-lg overflow-hidden ">
-                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}" class=" object-cover w-full h-full object-center"
-                                alt=""> --}}
+                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}"
+                                class=" object-cover w-full h-full object-center" alt=""> --}}
                             <img src="{{ asset('assets/maintenance.png') }}"
                                 class="transition-all -left-1/3 top-1/4 md:left-0 md:top-0 absolute animate-spin-slow duration-1000 "
                                 alt="">
@@ -459,8 +487,8 @@
                             </p>
                         </div>
                         <div class="w-full absolute rounded-2xl h-full bg-mocca shadow-lg overflow-hidden ">
-                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}" class=" object-cover w-full h-full object-center"
-                                alt=""> --}}
+                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}"
+                                class=" object-cover w-full h-full object-center" alt=""> --}}
                             <img src="{{ asset('assets/maintenance.png') }}"
                                 class="transition-all -left-1/3 top-1/4 md:left-0 md:top-0 absolute animate-spin-slow duration-1000 "
                                 alt="">
@@ -488,8 +516,8 @@
                             </p>
                         </div>
                         <div class="w-full absolute rounded-2xl h-full bg-mocca shadow-lg overflow-hidden ">
-                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}" class=" object-cover w-full h-full object-center"
-                                alt=""> --}}
+                            {{-- <img src="{{ asset('assets/foto-angkatan(2).JPG') }}"
+                                class=" object-cover w-full h-full object-center" alt=""> --}}
                             <img src="{{ asset('assets/maintenance.png') }}"
                                 class="transition-all -left-1/3 top-1/4 md:left-0 md:top-0 absolute animate-spin-slow duration-1000 "
                                 alt="">
@@ -553,7 +581,7 @@
             });
         </script>
     </section>
-  
+
 
 
     {{-- carousel gambar --}}

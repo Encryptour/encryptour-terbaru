@@ -9,7 +9,7 @@ class gallery extends Model
 {
     /** @use HasFactory<\Database\Factories\GalleryFactory> */
     use HasFactory;
-    protected $table = 'galeries';
+    protected $table = 'galleries';
     protected $fillable = [
         'category',
         'title',

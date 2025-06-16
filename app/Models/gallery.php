@@ -14,5 +14,6 @@ class gallery extends Model
         'category',
         'title',
         'img',
+        'img_id',
     ];
 }

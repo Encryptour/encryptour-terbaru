@@ -3,64 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\mahasiswa;
-use App\Http\Requests\StoremahasiswaRequest;
-use App\Http\Requests\UpdatemahasiswaRequest;
+use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $searchQuery = $request->input('search');
+        $order = $request->input('order', 'asc');
+        $perPage = 15;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $query = mahasiswa::query();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoremahasiswaRequest $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(mahasiswa $mahasiswa)
-    {
-        //
-    }
+        if (!empty($searchQuery)) {
+            $query->where('nama_lengkap', 'like', '%' . $searchQuery . '%');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(mahasiswa $mahasiswa)
-    {
-        //
-    }
+        
+        if (in_array($order, ['asc', 'desc'])) {
+            $query->orderBy('mdpl', $order);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatemahasiswaRequest $request, mahasiswa $mahasiswa)
-    {
-        //
-    }
+     
+        $data = $query->paginate($perPage)->withQueryString();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(mahasiswa $mahasiswa)
-    {
-        //
+        return view('biodata', [
+            'data' => $data, // Sudah berupa LengthAwarePaginator
+            'searchQuery' => $searchQuery,
+            'order' => $order,
+            'currentPage' => $data->currentPage(),
+            'totalPages' => $data->lastPage(),
+        ]);
     }
 }

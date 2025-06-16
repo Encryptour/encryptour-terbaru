@@ -18,11 +18,11 @@
         <div id="modalContent"
     class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-lg hidden md:flex flex-wrap bg-gradient-to-tl from-[#AD7D4F] from-60% to-[#EDB47E]  mx-auto">
     <div class="w-[5vw] h-full bg-transparent mx-auto mt-20 relative">
-        <!-- <a href="https://www.instagram.com/${itemData.user_ig}/"><img class="mx-auto mb-6 w-1/2" src="assets/uil_instagram.svg" alt=""></a>
-         <a href="mailto:${itemData.email_adress}"><img class="mx-auto mb-6 w-1/2" src="assets/mail.svg" alt=""></a>
-         <a href="https://wa.me/${itemData.no_wa}"><img class="mx-auto mb-6 w-1/2" src="assets/telephone.svg" alt=""></a>
+        <!-- <a href="https://www.instagram.com/${itemData.user_ig}/"><img class="mx-auto mb-6 w-1/2" src="assets/biodata/uil_instagram.svg" alt=""></a>
+         <a href="mailto:${itemData.email_adress}"><img class="mx-auto mb-6 w-1/2" src="assets/biodata/mail.svg" alt=""></a>
+         <a href="https://wa.me/${itemData.no_wa}"><img class="mx-auto mb-6 w-1/2" src="assets/biodata/telephone.svg" alt=""></a>
         <a href="https://www.instagram.com/tekkom_24/"><img class="mx-auto mb-4 w-1/3 absolute bottom-24 left-1/2 -translate-x-1/2"
-                src="assets/burger.svg" alt=""></a> -->
+                src="assets/biodata/burger.svg" alt=""></a> -->
     </div>
     <div class="w-1/3 bg-white h-full border"></div>
     <div class="w-7/12  h-full relative">
@@ -30,7 +30,7 @@
             class="absolute right-5 top-3 hover:rotate-180 hover:duration-500 hover:scale-90 transition cursor-pointer text-vanilla text-3xl">
             &#128936;
         </div>
-        <img src="/assets/foto-bebas/${itemData.non_formal_picture}"
+        <img src="/assets/biodata/foto-bebas/${itemData.non_formal_picture}"
             class="w-3/4 max-w-[340px] bottom-0 lg:-left-1/2 md:-left-1/2  md:-translate-x-10 -left-2/3 absolute float-left"
             alt="">
         <div class="p-4">
@@ -92,7 +92,7 @@
         </button>
     </div>
     <div class="w-full h-1/3  bg-transparent flex justify-center bg-white relative items-end ">
-        <img src="/assets/foto-bebas/${itemData.non_formal_picture}" class="object-cover h-[125%] absolute  -bottom-20" alt="">
+        <img src="/assets/biodata/foto-bebas/${itemData.non_formal_picture}" class="object-cover h-[125%] absolute  -bottom-20" alt="">
     </div>
     <div class="w-full h-1/2 bg-gradient-to-tr from-[#AD7D4F] from-60% to-[#EDB47E] relative p-6">
         <div class="w-full">
@@ -142,12 +142,12 @@
     <div class="w-full h-12 absolute bottom-0 bg-chocolate md:hidden ">
     <div class="w-full h-1 bg-vanilla"></div>
     <div class="w-full flex justify-center items-center h-full">
-         <!-- <a href="https://www.instagram.com/${itemData.user_ig}/"><img class=" w-2/3" src="assets/uil_instagram.svg"
+         <!-- <a href="https://www.instagram.com/${itemData.user_ig}/"><img class=" w-2/3" src="assets/biodata/uil_instagram.svg"
                  alt="instagram"></a>
-         <a href="mailto:${itemData.email_adress}"><img class=" w-2/3" src="assets/mail.svg" alt="Mail"></a>
-         <a href="https://wa.me/${itemData.no_wa}"><img class=" w-2/3" src="assets/telephone.svg"
+         <a href="mailto:${itemData.email_adress}"><img class=" w-2/3" src="assets/biodata/mail.svg" alt="Mail"></a>
+         <a href="https://wa.me/${itemData.no_wa}"><img class=" w-2/3" src="assets/biodata/telephone.svg"
                  alt="Whatsapp Number"></a>
-        <a href=""><img class=" w-2/3" src="assets/burger.svg" alt=""></a> -->
+        <a href=""><img class=" w-2/3" src="assets/biodata/burger.svg" alt=""></a> -->
     </div>
 </div>
 </div>
@@ -225,7 +225,7 @@
         @forelse ($data as $item)
             {{-- <button > --}}
             <div onclick="openModal(this)" data-item="{{ json_encode($item) }}"
-                style="background-image: url('/assets/foto-formal/{{ $item['formal_picture'] }}');"
+                style="background-image: url('/assets/biodata/foto-formal/{{ $item['formal_picture'] }}');"
                 class="card overflow-hidden group flex items-end mx-auto aspect-square xl:w-[350px] lg:w-[280px] sm:w-[210px] w-[108px] transition-all duration-700 ease-in-out border-chocolate border-2 hover:bg-chocolate text-black hover:text-vanilla :hover:text-opacity-75">
                 <div class="grid grid-cols-2">
                     <div class="flex flex-col mb-2 sm:mb-4 lg:mb-12 ml-1 sm:ml-2 lg:ml-6 z-10">
@@ -246,7 +246,7 @@
                     xl:group-hover:-translate-x-6 lg:group-hover:-translate-x-8 sm:group-hover:-translate-x-6 group-hover:-translate-x-1
                     xl:group-hover:-translate-y-8 lg:group-hover:-translate-y-12 sm:group-hover:-translate-y-8 group-hover:-translate-y-2
                     transition-transform">
-                                <img src="{{ asset('/assets/foto-formal/' . $item['formal_picture']) }}" alt=""
+                                <img src="{{ asset('/assets/biodata/foto-formal/' . $item['formal_picture']) }}" alt=""
                                     srcset="" class="object-cover w-full h-full max-w-[360px] max-h-[360px]">
                             </div> --}}
             </div>

@@ -45,7 +45,6 @@
                     </div>
                 @endforeach
 
-
                 <!-- Add more items as needed -->
             </div>
             <!-- Navigation Controls -->

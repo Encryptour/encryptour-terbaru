@@ -550,8 +550,8 @@
                 background: #66391C !important;
             }
         </style>
-        <link href="{{ asset('css/swiper.css') }}" rel="stylesheet" />
-        <script src="{{ asset('js/swiper.js') }}"></script>
+        <link href="{{ asset('swiper/css/swiper.css') }}" rel="stylesheet" />
+        <script src="{{ asset('swiper/js/swiper.js') }}"></script>
         <script>
             var swiper = new Swiper(".centered-slide-carousel", {
                 centeredSlides: true,

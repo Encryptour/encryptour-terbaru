@@ -29,21 +29,21 @@
                         class="w-full object-center h-full object-cover" alt="Image 2">
                 </div> --}}
 
-                    @foreach ($carousels as $index => $item)
-                        <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0 relative snap-center">
-                            @if ($index === 0)
-                                <div
-                                    class="w-full h-full flex justify-center items-center bg-gradient-to-b absolute z-10 from-black/50 via-transparent to-black/30">
-                                    <h1
-                                        class="text-2xl md:text-5xl drop-shadow-2xl rounded-xl bg-black/5 p-4 backdrop-blur-[1px] font-bold font-montserrat text-vanilla">
-                                        WELCOME TO OUR PAGE
-                                    </h1>
-                                </div>
-                            @endif
-                            <img src="{{ asset('storage/carousel/' . $item->img) }}"
-                                class="object-center h-full object-cover w-full relative" alt="Image {{ $index + 1 }}">
-                        </div>
-                    @endforeach
+                @foreach ($carousels as $index => $item)
+                    <div class="w-full h-[80vh] md:h-[70vh] flex-shrink-0 relative snap-center">
+                        @if ($index === 0)
+                            <div
+                                class="w-full h-full flex justify-center items-center bg-gradient-to-b absolute z-10 from-black/50 via-transparent to-black/30">
+                                <h1
+                                    class="text-2xl md:text-5xl drop-shadow-2xl rounded-xl bg-black/5 p-4 backdrop-blur-[1px] font-bold font-montserrat text-vanilla">
+                                    WELCOME TO OUR PAGE
+                                </h1>
+                            </div>
+                        @endif
+                        <img src="{{ $item->img }}" class="object-center h-full object-cover w-full relative"
+                            alt="Image {{ $index + 1 }}">
+                    </div>
+                @endforeach
 
 
                 <!-- Add more items as needed -->

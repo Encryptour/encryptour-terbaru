@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('category'); 
             $table->string('title');    
             $table->string('img'); 
-            $table->string('img_id')->nullable();     
+            $table->string('img_del')->nullable();     
             $table->timestamps(); 
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('carousels', function (Blueprint $table) {
         $table->id();
         $table->string('img'); // hanya nama file atau URL
-        $table->string('img_id')->nullable();
+        $table->string('img_del');
         $table->timestamps();
     });
     }

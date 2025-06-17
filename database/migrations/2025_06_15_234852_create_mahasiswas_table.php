@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('no_telp_wali');
             $table->string('formal_picture')->nullable();
             $table->string('non_formal_picture')->nullable();
-            $table->string('formal_picture_id')->nullable();
-            $table->string('non_formal_picture_id')->nullable();
+            $table->string('formal_picture_del')->nullable();
+            $table->string('non_formal_picture_del')->nullable();
             $table->integer('mdpl')->nullable();
             $table->timestamps();
         });

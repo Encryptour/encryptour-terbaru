@@ -10,5 +10,5 @@ class carousel extends Model
     /** @use HasFactory<\Database\Factories\CarouselFactory> */
     use HasFactory;
     protected $table = 'carousels';
-    protected $fillable = ['img', 'img_id'];
+    protected $fillable = ['img', 'img_del'];
 }

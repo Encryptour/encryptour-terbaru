@@ -1,5 +1,5 @@
 <x-app-layout>
-        <link rel="icon" type="image/x-icon" href="{{ asset('storage/identity/logo/logo1.png')}}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/identity/logo/logo1.png')}}" />
         <link rel="stylesheet" href="{{ asset('slider/styles.css') }}">
             
             <!--Foto Angkatan-->
@@ -84,46 +84,46 @@
         <div class="slider-container">
             <div id="slider">
                 <div class="slide ">
-                    <img src="{{ asset('storage/identity/logo/logo1.png')}}" alt="Slide 1">
+                    <img src="{{ asset('assets/identity/logo/logo1.png')}}" alt="Slide 1">
                     <h1 class="text-md md:text-4xl font-bold">Logo ENCRYPTOUR</h1>
                 </div>
                 <div class="slide ">
-                    <img class="w-20 h-auto" src="{{ asset('storage/identity/logo/logo2.png') }}" alt="Slide 2">
+                    <img class="w-20 h-auto" src="{{ asset('assets/identity/logo/logo2.png') }}" alt="Slide 2">
                     <p class="text h-full overflow-hidden overflow-y-auto md:pt-16 "><b class="text-md md:text-4xl ">Kepala Serigala</b> <br>
                         Kekeluargaan <br><br>
                         
                         Dalam kawanan Serigala, serigala sangat memedulikan keluarganya. hal ini sesuai dengan misi kami yang ingin menumbuhkan lingkungan kekeluargaan</p>
                 </div>
                 <div class="slide ">
-                    <img src="{{ asset('storage/identity/logo/logo3.png')}}" alt="Slide 3">
+                    <img src="{{ asset('assets/identity/logo/logo3.png')}}" alt="Slide 3">
                     <p class="text h-full overflow-hidden overflow-y-auto md:pt-16"><b class="text-md md:text-4xl ">Mulut Serigala Yang Terbuka </b><br>
                         kesiapan melindungi <br><br>
                         
                         Mulut yang terbuka memiliki arti kesiapan untuk melindungi kawanannya, hal ini sesuai dengan nama angkatan 24 untuk saling melindungi satu sama lain</p>
                 </div>
                 <div class="slide ">
-                    <img src="{{ asset('storage/identity/logo/logo4.png')}}" alt="Slide 4">
+                    <img src="{{ asset('assets/identity/logo/logo4.png')}}" alt="Slide 4">
                     <p class="text h-full overflow-hidden overflow-y-auto md:pt-16"><b class="text-md md:text-4xl ">Sirkuit Elektronik </b><br>
                         Kemajuan Teknologi <br><br>
                         
                         Menandakan kemajuan teknologi serta hubungan angkatan kami dengan Department Teknik Komputer. </p>
                 </div>
                 <div class="slide ">
-                    <img src="{{ asset('storage/identity/logo/logo5.png')}}" alt="Slide 5">
+                    <img src="{{ asset('assets/identity/logo/logo5.png')}}" alt="Slide 5">
                     <p class="text h-full overflow-hidden overflow-y-auto md:pt-16"><b class="text-md md:text-4xl ">24 Node</b> <br> 
                         Angkatan 24 <br><br>
                         
                         node yang berjumlahkan 24 menandakan kami sebagai angkatan Teknik Komputer 2024</p>
                 </div>
                 <div class="slide ">
-                    <img src="{{ asset('storage/identity/logo/logo6.png')}}" alt="Slide 6">
+                    <img src="{{ asset('assets/identity/logo/logo6.png')}}" alt="Slide 6">
                     <p class="text h-full overflow-hidden overflow-y-auto md:pt-16"><b class="text-md md:text-4xl ">Lingkaran</b> <br>
                         Silaturahmi yang tak terputus
                         <br><br>
                         lingkaran melambangkan silaturahmi tak terputus dan tanpa akhir</p>
                 </div>
                 <div class="slide ">
-                    <img src="{{ asset('storage/identity/logo/logo7.png')}}" alt="Slide 7">
+                    <img src="{{ asset('assets/identity/logo/logo7.png')}}" alt="Slide 7">
                     <p class="text h-full overflow-hidden overflow-y-auto md:pt-16"><b class="text-md md:text-4xl ">Lingkaran Biner</b> <br>
                         
                         01100101 = E <br>
@@ -138,7 +138,7 @@
                         01110010 = R</p>
                 </div>
                 <div class="slide ">
-                    <img src="{{ asset('storage/identity/logo/logo8.png')}}" alt="Slide 8">
+                    <img src="{{ asset('assets/identity/logo/logo8.png')}}" alt="Slide 8">
                     <p class="text h-full overflow-hidden overflow-y-auto md:pt-16"><b class="text-md md:text-4xl ">Start and Stop</b><br>
                         
                         Diberikan sebuah tanda panah kebawah yang menandakan permulaian untuk membaca Encryptour dengan searah jarum jam, lalu terdapat strip sebagai pembatas yang menandakan bahwa biner sudah berakhir </p>
@@ -177,13 +177,13 @@
             <div class="slider-container-v2">
                 <div id="slider-v2">
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot1.png')}}" alt="Image 1">
+                        <img src="{{ asset('assets/identity/maskot/mascot1.png')}}" alt="Image 1">
                         <div class="description-v2 flex items-center justify-center h-full overflow-hidden overflow-y-auto md:pt-16">
                             <h1>Mascot ENCRYPTOUR</h1>
                         </div>
                     </div>
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot1.png')}}" alt="Image 2">
+                        <img src="{{ asset('assets/identity/maskot/mascot1.png')}}" alt="Image 2">
                         <div class="description-v2 h-full overflow-hidden overflow-y-auto md:pt-16">
                             <p><b class="text-md md:text-4xl "><q>LOCKIE</q></b>
                                 <br>
@@ -191,7 +191,7 @@
                         </div>
                     </div>
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot2.png')}}" alt="Image 3">
+                        <img src="{{ asset('assets/identity/maskot/mascot2.png')}}" alt="Image 3">
                         <div class="description-v2 h-full overflow-hidden overflow-y-auto md:pt-16">
                             <p><b class="text-md md:text-4xl ">Ekspresi Ceria</b><br>
                                 Semangat dan Ramah
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot3.png')}}" alt="Image 4">
+                        <img src="{{ asset('assets/identity/maskot/mascot3.png')}}" alt="Image 4">
                         <div class="description-v2 h-full overflow-hidden overflow-y-auto md:pt-16">
                             <p><b class="text-md md:text-4xl ">Mata Terbuka Lebar</b><br>
                                 Kompeten dan Integritas
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot4.png')}}" alt="Image 5">
+                        <img src="{{ asset('assets/identity/maskot/mascot4.png')}}" alt="Image 5">
                         <div class="description-v2 h-full overflow-hidden overflow-y-auto md:pt-16">
                             <p><b class="text-md md:text-4xl ">Forever Salute</b><br>
                                 Salam Angkatan
@@ -218,7 +218,7 @@
                         </div>
                     </div>
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot6.png')}}" alt="Image 6">
+                        <img src="{{ asset('assets/identity/maskot/mascot6.png')}}" alt="Image 6">
                         <div class="description-v2 h-full overflow-hidden overflow-y-auto md:pt-16">
                             <p><b class="text-md md:text-4xl ">Work Jacket</b><br>
                                 Representasi Kolaborasi
@@ -228,7 +228,7 @@
                         </div>
                     </div>
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot5.png')}}" alt="Image 7">
+                        <img src="{{ asset('assets/identity/maskot/mascot5.png')}}" alt="Image 7">
                         <div class="description-v2 h-full overflow-hidden overflow-y-auto md:pt-16">
                             <p><b class="text-md md:text-4xl ">Bentuk Ekor</b><br>
                                 Inisial Encryptour
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     <div class="slide-v2 gap-1 md:gap-5 ">
-                        <img src="{{ asset('storage/identity/maskot/mascot1.png')}}" alt="Image 8">
+                        <img src="{{ asset('assets/identity/maskot/mascot1.png')}}" alt="Image 8">
                         <div class="description-v2 h-full overflow-hidden overflow-y-auto md:pt-16">
                             <p><b class="text-md md:text-4xl ">Maskot yang Berdiri</b><br>
                                 Tanggung jawab

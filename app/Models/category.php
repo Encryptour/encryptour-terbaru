@@ -10,6 +10,6 @@ class category extends Model
     protected $table = "categories";
     public function galleries()
     {
-        return $this->hasMany(Gallery::class, 'category');
+        return $this->hasMany(gallery::class, 'category');
     }
 }

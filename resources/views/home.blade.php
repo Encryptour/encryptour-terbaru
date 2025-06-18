@@ -258,9 +258,9 @@
                     <div class="swiper-wrapper">
                         @foreach ($data as $item)
                             <div class="swiper-slide swiper-slides relative">
-                                <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden">
+                                <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden bg-mocca">
                                     <!-- Semua overlay -->
-                                    <div class="absolute inset-0 flex flex-col justify-between p-4 z-10">
+                                    <div class="bg-mocca absolute inset-0 flex flex-col justify-between p-4 z-10">
                                         <!-- Judul sama kategori -->
                                         <div>
                                             <span

@@ -15,6 +15,14 @@
       "dest": "public/assets/"
     },
     {
+      "src": "/slider/(.*)",
+      "dest": "public/slider/"
+    },
+    {
+      "src": "/swiper/(.*)",
+      "dest": "public/swiper/"
+    },
+    {
       "src": "/css/(.*)",
       "dest": "public/css/"
     },

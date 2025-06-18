@@ -1,6 +1,6 @@
 <x-app-layout>
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/identity/logo/logo1.png')}}" />
-        <link rel="stylesheet" href="{{ url('slider/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('slider/styles.css') }}">
             
             <!--Foto Angkatan-->
             <div class="foto"></div>

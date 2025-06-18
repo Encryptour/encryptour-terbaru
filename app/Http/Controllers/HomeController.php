@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Gallery;
-use App\Models\Carousel;
+use App\Models\category;
+use App\Models\gallery;
+use App\Models\carousel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

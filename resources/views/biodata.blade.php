@@ -1,7 +1,4 @@
 <x-app-layout>
-    {{-- <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black/50">
-        @include('components.PopBio1', ['dataPerson' => $dataPerson])
-    </div> --}}
 
     <script>
         function openModal(button) {
@@ -30,7 +27,7 @@
             class="absolute right-5 top-3 hover:rotate-180 hover:duration-500 hover:scale-90 transition cursor-pointer text-vanilla text-3xl">
             &#128936;
         </div>
-        <img src="/storage/biodata/foto-bebas/${itemData.non_formal_picture}"
+        <img src="${itemData.non_formal_picture}"
             class="w-3/4 max-w-[340px] bottom-0 lg:-left-1/2 md:-left-1/2  md:-translate-x-10 -left-2/3 absolute float-left"
             alt="">
         <div class="p-4">
@@ -92,7 +89,7 @@
         </button>
     </div>
     <div class="w-full h-1/3  bg-transparent flex justify-center bg-white relative items-end ">
-        <img src="/storage/biodata/foto-bebas/${itemData.non_formal_picture}" class="object-cover h-[125%] absolute  -bottom-20" alt="">
+        <img src="${itemData.non_formal_picture}" class="object-cover h-[125%] absolute  -bottom-20" alt="">
     </div>
     <div class="w-full h-1/2 bg-gradient-to-tr from-[#AD7D4F] from-60% to-[#EDB47E] relative p-6">
         <div class="w-full">
@@ -225,7 +222,7 @@
         @forelse ($data as $item)
             {{-- <button > --}}
             <div onclick="openModal(this)" data-item="{{ json_encode($item) }}"
-                style="background-image: url('/storage/biodata/foto-formal/{{ $item['formal_picture'] }}');"
+                style="background-image: url('{{ $item['formal_picture'] }}');"
                 class="card overflow-hidden group flex items-end mx-auto aspect-square xl:w-[350px] lg:w-[280px] sm:w-[210px] w-[108px] transition-all duration-700 ease-in-out border-chocolate border-2 hover:bg-chocolate text-black hover:text-vanilla :hover:text-opacity-75">
                 <div class="grid grid-cols-2">
                     <div class="flex flex-col mb-2 sm:mb-4 lg:mb-12 ml-1 sm:ml-2 lg:ml-6 z-10">

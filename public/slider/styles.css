@@ -194,6 +194,7 @@ body {
 /*foto*/
 
 .foto {
+    background-image: url(foto-angkatan.JPG);
     width: 100%;
     height: 100vh;
     position: relative;

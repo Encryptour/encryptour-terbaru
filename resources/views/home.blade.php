@@ -244,9 +244,7 @@
                             <span
                                 class="text-sm bg-mocca/20 text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name }}</span>
                             <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
-                            <p class="text-white text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing
-                                elit.
-                            </p>
+                            <p class="text-white text-sm mt-2">{{ $item['desc'] }}</p>
                             <a href="#" class="text-[#66391c] font-bold text-sm mt-4 inline-block hover:underline">see
                                 more →</a>
                         </div>

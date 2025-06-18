@@ -11,12 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carousels', function (Blueprint $table) {
-        $table->id();
-        $table->string('img'); // hanya nama file atau URL
-        $table->string('img_del');
-        $table->timestamps();
-    });
+        
     }
 
     /**

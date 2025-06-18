@@ -15,11 +15,6 @@ class MahasiswaSeeder extends Seeder
      */
     public function run(): void
     {
-        $json = File::get(database_path('data/mahasiswa.json'));
-        $data = json_decode($json, true);
-    
-        foreach ($data as $item) {
-            Mahasiswa::create($item);
-        }
+        
     }
 }

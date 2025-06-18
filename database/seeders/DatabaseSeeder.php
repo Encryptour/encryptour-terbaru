@@ -14,10 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            MahasiswaSeeder::class,
-            GallerySeeder::class,
-            CarouselSeeder::class,
-        ]);
+        
     }
 }

@@ -12,9 +12,7 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $count = 6;
-
-        $galleries = Gallery::with('category')->inRandomOrder()->paginate($count);
+        $galleries = Gallery::with('category')->paginate(6);
         $carousel = Carousel::all();
         $category = Category::all();
         return view('home',[

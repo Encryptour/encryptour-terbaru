@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="{{ asset('slider/styles.css') }}">
             
             <!--Foto Angkatan-->
-            <div class="foto"></div>
+            <div class="foto" style="background: {{ asset('assets/foto-angkatan.JPG'); }}"></div>
             <!--Visi Misi-->
                 <div class="container3">
                     <div class="line-container3">

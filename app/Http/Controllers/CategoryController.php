@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\gallery;
 use App\Models\category;
-use App\Http\Requests\StoregalleryRequest;
-use App\Http\Requests\UpdategalleryRequest;
+use Illuminate\Http\Request;
 
-class GalleryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = category::all();
-        $gallery = Gallery::with('category')->latest()->get();
-        return view("gallery", [
-            'data' => $gallery,
-            'categories'=> $categories
-        ]);
+        //
     }
 
     /**
@@ -33,7 +26,7 @@ class GalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoregalleryRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -41,7 +34,7 @@ class GalleryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(gallery $gallery)
+    public function show(category $category)
     {
         //
     }
@@ -49,7 +42,7 @@ class GalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(gallery $gallery)
+    public function edit(category $category)
     {
         //
     }
@@ -57,7 +50,7 @@ class GalleryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdategalleryRequest $request, gallery $gallery)
+    public function update(Request $request, category $category)
     {
         //
     }
@@ -65,7 +58,7 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(gallery $gallery)
+    public function destroy(category $category)
     {
         //
     }

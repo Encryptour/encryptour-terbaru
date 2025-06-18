@@ -7,13 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class gallery extends Model
 {
-    /** @use HasFactory<\Database\Factories\GalleryFactory> */
-    use HasFactory;
     protected $table = 'galleries';
-    protected $fillable = [
-        'category',
-        'title',
-        'img',
-        'img_del',
-    ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

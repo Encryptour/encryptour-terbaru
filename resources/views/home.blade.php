@@ -176,23 +176,23 @@
             <h1 class="text-4xl md:text-5xl font-extrabold text-start mb-4 md:mb-8 text-[#66391c]">GALLERY</h1>
             <p class="max-w-4xl text-[#66391c] font-medium md:font-semibold md:text-base text-sm leading-relaxed mb-6">
                 A collection of exciting moments, from projects, achievements, to other memories. Choose a category
-                below to check it all out!</p>
+                below to check it all out!</p>
 
             <!-- Ini buat desktop! -->
             <div class="flex justify-center mb-12 hidden lg:flex">
                 <div id="categoryButtons" class="flex gap-4 bg-mocca rounded-full px-4 py-2 text-lg font-bold">
                     <button data-category="all"
-                        class="px-4 text-[#66391c] border-b-4 hover:text-[#F2E5BF] category-button">all</button>
-                    <button data-category="proker" class="px-4 text-[#66391c] hover:text-[#F2E5BF] category-button">
-                        proker
-                    </button>
-                    <button data-category="prestasi" class="px-4 text-[#66391c] hover:text-[#F2E5BF] category-button">
-                        prestasi </button>
-                    <button data-category="tweets" class="px-4 text-[#66391c] hover:text-[#F2E5BF] category-button">
-                        tweets
-                    </button>
+                        class="px-4 py-2 text-vanilla border-b-4 border-[#66391c] category-button active">all</button>
+
+                    @foreach($categories as $cat)
+                        <button data-category="{{ strtolower($cat->name) }}"
+                            class="px-4 py-2 text-[#66391c] hover:text-[#F2E5BF] category-button">
+                            {{ strtolower($cat->name) }}
+                        </button>
+                    @endforeach
                 </div>
             </div>
+
 
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
@@ -234,7 +234,7 @@
             <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
                 @foreach ($data as $item)
                     <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden"
-                        data-category="{{ $item['category'] }}">
+                        data-category="{{ $item->category->name }}">
                         {{-- <div
                             class="h-full bg-mocca flex justify-center items-center text-3xl text-vanilla text-center font-bold w-full">
                             COMING SOON!
@@ -242,7 +242,7 @@
                         {{-- <img src="{{ asset($item['img']) }}" alt="Gallery Image" class="w-full"> --}}
                         <div class="p-4 bg-mocca">
                             <span
-                                class="text-sm bg-mocca/20 text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item['category'] }}</span>
+                                class="text-sm bg-mocca/20 text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name }}</span>
                             <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
                             <p class="text-white text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing
                                 elit.

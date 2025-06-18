@@ -7,8 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class carousel extends Model
 {
-    /** @use HasFactory<\Database\Factories\CarouselFactory> */
-    use HasFactory;
     protected $table = 'carousels';
-    protected $fillable = ['img', 'img_del'];
 }

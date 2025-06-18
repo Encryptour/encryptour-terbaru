@@ -133,7 +133,7 @@
                                     </div>
                                 </div>
                                 <!-- Gambarnya -->
-                                <img src="https://placehold.co/300" alt="Gallery Image" class="swiper-image w-full">
+                                <img src="{{ $item['img'] }}" alt="Gallery Image" class="swiper-image w-full">
                             </div>
                         </div>
                     @endforeach

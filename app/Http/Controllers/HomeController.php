@@ -12,7 +12,10 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $galleries = Gallery::with('category')->paginate(6);
+         $galleries = Gallery::with('category')
+        ->latest()
+        ->take(6)
+        ->get();
         $carousel = Carousel::all();
         $category = Category::all();
         return view('home',[
@@ -20,7 +23,5 @@ class HomeController extends Controller
             'carousels' => $carousel,
             'categories'=> $category
         ]);
-
-
     }
 }

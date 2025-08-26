@@ -69,13 +69,12 @@
                 @endphp
                 <div class="relative w-full h-[300px] overflow-hidden">
                     <div id="about-carousel-items"
-                        class="flex transition-transform duration-500 w-full h-full items-center gap-10">
+                        class="flex transition-transform duration-500 w-full h-full items-center">
                         @foreach ($aboutSlides as $slide)
-                            <div class="min-w-full flex items-center justify-center text-center px-10">
-                                <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
-                                    class="w-auto h-[100px] md:h-[200px] xl:h-[250px]">
-
+                            <div class="min-w-full flex flex-col items-center justify-center text-center px-10">
                                 @if ($slide['type'] === 'title')
+                                    <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
+                                        class="w-auto h-[100px] md:h-[200px] xl:h-[250px] mb-4">
                                     <h2 class="text-2xl md:text-4xl font-bold">{{ $slide['content'] }}</h2>
                                 @else
                                     <p class="text-base md:text-2xl">{{ $slide['content'] }}</p>
@@ -121,7 +120,7 @@
                 below to check it all out!</p>
 
             <!-- Ini buat desktop! -->
-            <div class="flex justify-center mb-12 hidden lg:flex">
+            {{-- <div class="flex justify-center mb-12 hidden lg:flex">
                 <div id="categoryButtons" class="flex gap-4 bg-mocca rounded-full px-4 py-2 text-lg font-bold">
                     <button data-category="all"
                         class="px-4 py-2 text-vanilla border-b-4 border-[#66391c] category-button active">all</button>
@@ -164,7 +163,7 @@
                         });
                     }
                 });
-            </script>
+            </script> --}}
 
             <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
                 @foreach ($data as $item)

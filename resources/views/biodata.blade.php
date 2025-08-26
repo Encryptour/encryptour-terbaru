@@ -5,21 +5,18 @@
 
 
             var itemData = JSON.parse(button.getAttribute('data-item'));
-// push terbaru 2
-            // Update the modal content
             var modal = document.getElementById('modal');
-
-
-            // Assuming you're passing an object with properties, update modal content
             modal.innerHTML = `
         <div id="modalContent"
     class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-lg hidden md:flex flex-wrap bg-gradient-to-tl from-[#AD7D4F] from-60% to-[#EDB47E]  mx-auto">
     <div class="w-[5vw] h-full bg-transparent mx-auto mt-20 relative">
+
         <!-- <a href="https://www.instagram.com/${itemData.user_ig}/"><img class="mx-auto mb-6 w-1/2" src="storage/biodata/uil_instagram.svg" alt=""></a>
          <a href="mailto:${itemData.email_adress}"><img class="mx-auto mb-6 w-1/2" src="storage/biodata/mail.svg" alt=""></a>
          <a href="https://wa.me/${itemData.no_wa}"><img class="mx-auto mb-6 w-1/2" src="storage/biodata/telephone.svg" alt=""></a>
         <a href="https://www.instagram.com/tekkom_24/"><img class="mx-auto mb-4 w-1/3 absolute bottom-24 left-1/2 -translate-x-1/2"
                 src="storage/biodata/burger.svg" alt=""></a> -->
+                
     </div>
     <div class="w-1/3 bg-white h-full border"></div>
     <div class="w-7/12  h-full relative">

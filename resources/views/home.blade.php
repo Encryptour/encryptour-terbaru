@@ -22,16 +22,12 @@
                 @endforeach
             </div>
             <!-- Navigation Controls -->
-            <button id="prev0"
-                class="absolute top-1/2 left-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">
-                < </button>
-                    <button id="next0"
-                        class="absolute top-1/2 right-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">></button>
-                    <!-- Indicators -->
-                    <div id="indicators"
-                        class="absolute transition-all duration-500 bottom-0 left-0 right-0 flex justify-center space-x-2 bg-gradient-to-t bg-opacity-20 md:from-vanilla/80 from-vanilla w-full pb-12 pt-4">
-                        <!-- Indicators will be generated here -->
-                    </div>
+            <button id="prev0" class="absolute top-1/2 left-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">˂</button>
+            <button id="next0" class="absolute top-1/2 right-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">˃</button>
+            <!-- Indicators -->
+            <div id="indicators" class="absolute transition-all duration-500 bottom-0 left-0 right-0 flex justify-center space-x-2 bg-gradient-to-t bg-opacity-20 md:from-vanilla/80 from-vanilla w-full pb-12 pt-4">
+                <!-- Indicators will be generated here -->
+            </div>
         </div>
     </section>
 
@@ -74,8 +70,8 @@
                             <div class="min-w-full flex flex-col items-center justify-center text-center px-10">
                                 @if ($slide['type'] === 'title')
                                     <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
-                                        class="w-auto h-[100px] md:h-[200px] xl:h-[250px] mb-4">
-                                    <h2 class="text-2xl md:text-4xl font-bold">{{ $slide['content'] }}</h2>
+                                        class="w-auto h-[100px] md:h-[200px] xl:h-[250px] mb-0">
+                                    <h2 class="text-2xl md:text-3xl font-bold">{{ $slide['content'] }}</h2>
                                 @else
                                     <p class="text-base md:text-2xl">{{ $slide['content'] }}</p>
                                 @endif
@@ -83,8 +79,6 @@
                         @endforeach
                     </div>
                 </div>
-
-
                 <!-- Indicators (di dalam card) -->
                 <div id="about-indicators" class="absolute bottom-4 flex space-x-2"></div>
             </div>
@@ -92,13 +86,10 @@
             <!-- Navigation Controls -->
             <button id="prevAbout"
                 class="absolute left-4 top-1/2 -translate-y-1/2 font-montserrat text-lg bg-black/20 hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all 
-                   text-white/70 w-[4vh] h-[4vh] rounded-full flex items-center justify-center">
-                < </button>
+                   text-white/70 w-[4vh] h-[4vh] rounded-full flex items-center justify-center">˂</button>
                     <button id="nextAbout"
                         class="absolute right-4 top-1/2 -translate-y-1/2 font-montserrat text-lg bg-black/20 hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all 
-                   text-white/70 w-[4vh] h-[4vh] rounded-full flex items-center justify-center">
-                        >
-                    </button>
+                   text-white/70 w-[4vh] h-[4vh] rounded-full flex items-center justify-center">˃</button>
         </div>
     </section>
 

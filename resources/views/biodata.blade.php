@@ -5,84 +5,106 @@
 
         <!-- Desktop Modal -->
         <div id="modalContent"
-            class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-lg hidden md:flex flex-wrap bg-gradient-to-tl from-[#AD7D4F] from-60% to-[#EDB47E] mx-auto relative rounded-2xl overflow-hidden">
+            class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-xl hidden md:grid grid-cols-[auto_1fr] bg-gradient-to-tl from-[#AD7D4F] to-[#EDB47E] mx-auto relative rounded-2xl overflow-hidden">
 
-            <div class="w-[5vw] h-full bg-transparent mx-auto mt-20 relative">
-                <!-- Social icons (opsional, bisa isi dari JS juga) -->
+            <!-- Tombol close (luar card, tapi dalam modal) -->
+            <div id="closeModal"
+                class="absolute right-5 top-5 cursor-pointer text-chocolate text-3xl hover:rotate-90 transition">
+                ✖
             </div>
 
-            <div class="w-7/12 h-full relative">
-                <!-- Tombol close -->
-                <div id="closeModal"
-                    class="absolute right-5 top-3 hover:rotate-180 hover:duration-500 hover:scale-90 transition cursor-pointer text-chocolate text-3xl">
-                    &#128936;
-                </div>
-
+            <!-- KIRI: foto (fixed, no scroll) -->
+            <div class="flex flex-col justify-evenly p-6 h-full">
                 <!-- Foto -->
-                <img id="modalImage"
-                    class="w-3/4 max-w-[340px] bottom-0 lg:-left-1/2 md:-left-1/2 md:-translate-x-10 -left-2/3 absolute float-left"
-                    alt="">
-
-                <!-- Nama -->
-                <div class="bg-vanilla text-chocolate rounded-xl shadow-md p-6 mb-4">
-                    <h4 id="modalNamaLengkap" class="lg:text-xl text-sm mt-10 font-light capitalize">
-                    </h4>
-                    <h1 id="modalNamaPanggilan" class="lg:text-9xl sm:text-7xl font-bold uppercase"></h1>
+                <div class="flex items-start justify-center">
+                    <img id="modalImage" class="bg-vanilla w-[260px] max-h-[60vh] object-cover rounded-xl shadow-lg"
+                        alt="">
                 </div>
 
-                <div class="bg-[#7A5C3A] bg-opacity-90 rounded-xl shadow-inner p-6 flex-1 overflow-y-auto">
-                    
+                <!-- Bagian bawah: icon sosmed -->
+                <div class="w-full flex justify-center items-center gap-4 mt-2">
+                    <a id="modalIg" href="">
+                        <i class="fa fa-instagram text-chocolate hover:scale-110 transition"
+                            style="font-size: 3rem;"></i>
+                    </a>
+                    <a id="modalEmail" href="">
+                        <i class="fa fa-envelope text-chocolate hover:scale-110 transition"
+                            style="font-size: 3rem;"></i>
+                    </a>
+                    <a id="modalWa" href="">
+                        <i class="fa fa-whatsapp text-chocolate hover:scale-110 transition"
+                            style="font-size: 3rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- KANAN: Scrollable card (lebih kecil, ada margin) -->
+            <div class="flex items-start justify-start p-6 h-full min-h-0">
+                <div
+                    class="bg-chocolate rounded-2xl shadow-inner p-6 w-full h-full overflow-y-auto max-w-[95%] scroll-card">
+
+                    <!-- Nama -->
+                    <div class="mb-8">
+                        <h4 id="modalNamaLengkap" class="text-sm text-orange-200 font-light capitalize"></h4>
+                        <h1 id="modalNamaPanggilan" class="text-6xl md:text-7xl font-bold uppercase text-orange-50">
+                        </h1>
+                    </div>
+
                     <!-- Quotes -->
-                    <div class="lg:text-xl text-sm font-light text-orange-100 ml-10 mb-2">
-                        <p id="modalQuotes"></p>
+                    <div class="mb-6">
+                        <p id="modalQuotes" class="text-orange-100 italic text-lg"></p>
                     </div>
 
                     <!-- Data ringkas -->
-                    <div class="lg:text-xl text-sm font-light text-orange-100 ml-10 mb-2">
-                        <ul class="flex flex-wrap">
+                    <div class="mb-6">
+                        <ul class="text-orange-100 text-sm mb-1 flex flex-wrap">
                             <li class="w-1/3">Asal</li>
                             <li class="w-1/3">NIM</li>
                             <li class="w-1/3">TTL</li>
                         </ul>
-                        <ul class="font-semibold flex flex-wrap">
+                        <ul class="text-orange-50 font-semibold flex flex-wrap">
                             <li id="modalAsal" class="w-1/3"></li>
                             <li id="modalNim" class="w-1/3"></li>
-                            <li id="modalTtl" class="w-1/3 pr-4"></li>
+                            <li id="modalTtl" class="w-1/3"></li>
                         </ul>
                     </div>
 
                     <!-- Alamat Kos -->
-                    <div class="w-full m-4 text-orange-100 lg:text-xl text-sm ml-8 lg:ml-10">
-                        <h1 class="font-light">Alamat Kos</h1>
-                        <h1 id="modalAlamatKos" class="font-semibold w-3/4 overflow-x-auto"></h1>
+                    <div class="mb-6">
+                        <h1 class="text-orange-100 font-light">Alamat Kos</h1>
+                        <h1 id="modalAlamatKos" class="text-orange-50 font-semibold"></h1>
                     </div>
 
                     <!-- Alamat Rumah + MDPL -->
-                    <div class="w-full m-4 ml-4 text-orange-100 lg:text-xl text-sm flex justify-start">
-                        <div class="ml-4 w-1/2">
-                            <h1 class="font-light">Alamat Rumah</h1>
-                            <h1 id="modalAlamatRumah" class="font-semibold max-h-16 overflow-y-auto"></h1>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="w-1/2">
+                            <h1 class="text-orange-100 font-light">Alamat Rumah</h1>
+                            <h1 id="modalAlamatRumah" class="text-orange-50 font-semibold max-h-16 overflow-y-auto">
+                            </h1>
                         </div>
-                        <div class="ml-4">
-                            <h1 class="font-light">Ketinggian Rumah</h1>
-                            <h1 id="modalMdpl" class="font-semibold"></h1>
+                        <div class="w-1/3">
+                            <h1 class="text-orange-100 font-light">Ketinggian Rumah</h1>
+                            <h1 id="modalMdpl" class="text-orange-50 font-semibold"></h1>
                         </div>
                     </div>
-                </div>
 
-                <!-- Hobi -->
-                <div class="w-full m-4 ml-4 text-orange-100 lg:text-xl text-sm">
-                    <h1 class="ml-4 font-light">Hobi</h1>
-                    <h1 id="modalHobi" class="ml-4 font-semibold"></h1>
-                </div>
+                    <!-- Hobi -->
+                    <div class="mb-6">
+                        <h1 class="text-orange-100 font-light">Hobi</h1>
+                        <h1 id="modalHobi" class="text-orange-50 font-semibold"></h1>
+                    </div>
 
-                <!-- Tempat makan favorit -->
-                <div class="w-full m-4 ml-4 text-orange-100 lg:text-xl text-sm">
-                    <h1 class="ml-4 font-light">Tempat Makan Favorit</h1>
-                    <h1 id="modalTempatMakanFav" class="ml-4 font-semibold"></h1>
+                    <!-- Tempat makan favorit -->
+                    <div>
+                        <h1 class="text-orange-100 font-light">Tempat Makan Favorit</h1>
+                        <h1 id="modalTempatMakanFav" class="text-orange-50 font-semibold"></h1>
+                    </div>
                 </div>
             </div>
         </div>
+
+
 
         <!-- Mobile Modal -->
         <div id="modalContent2"
@@ -177,6 +199,9 @@
             document.getElementById('modalMdpl').innerText = itemData.mdpl;
             document.getElementById('modalHobi').innerText = itemData.hobi;
             document.getElementById('modalTempatMakanFav').innerText = itemData.tempat_makan_fav;
+            document.getElementById('modalIg').href = `https://www.instagram.com/${itemData.user_ig}/`;
+            document.getElementById('modalEmail').href = `mailto:${itemData.email_adress}`;
+            document.getElementById('modalWa').href = `https://wa.me/${itemData.no_wa}`;
 
             // Mobile modal
             document.getElementById('modalImage2').src = itemData.non_formal_picture;
@@ -466,10 +491,10 @@
                         <div class=""></div>
                     </div>
                     {{-- <div class="z-0
-                                        xl:group-hover:scale-125 group-hover:scale-150
-                                        xl:group-hover:-translate-x-6 lg:group-hover:-translate-x-8 sm:group-hover:-translate-x-6 group-hover:-translate-x-1
-                                        xl:group-hover:-translate-y-8 lg:group-hover:-translate-y-12 sm:group-hover:-translate-y-8 group-hover:-translate-y-2
-                                        transition-transform">
+                                                                xl:group-hover:scale-125 group-hover:scale-150
+                                                                xl:group-hover:-translate-x-6 lg:group-hover:-translate-x-8 sm:group-hover:-translate-x-6 group-hover:-translate-x-1
+                                                                xl:group-hover:-translate-y-8 lg:group-hover:-translate-y-12 sm:group-hover:-translate-y-8 group-hover:-translate-y-2
+                                                                transition-transform">
                         <img src="{{ asset('/storage/biodata/foto-formal/' . $item['formal_picture']) }}" alt="" srcset=""
                             class="object-cover w-full h-full max-w-[360px] max-h-[360px]">
                     </div> --}}

@@ -327,6 +327,7 @@
             <h1 class=" ml-4 font-light">Tempat Makan Favorit</h1>
             <h1 class=" ml-4 font-semibold">${itemData.tempat_makan_fav}</h1>
         </div>
+        
 
     </div>
 

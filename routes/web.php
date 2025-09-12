@@ -10,7 +10,7 @@ Route::get('/identity', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/biodata', [MahasiswaController::class, 'index']);
+Route::get('/biodata', [MahasiswaController::class, 'index'])->name('biodata.index');
 
 
-Route::get('/gallery', [GalleryController::class, 'index']);
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');

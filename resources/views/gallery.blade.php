@@ -101,28 +101,35 @@
         <!-- Ini buat desktop! -->
         <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
             @foreach ($data as $item)
-                <a href="#" class="open-gallery-modal" data-img="{{ $item['img'] }}" data-title="{{ $item['title'] }}" data-desc="{{ $item['desc'] }}">
-                    <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden relative w-full h-[360px]"
-                        data-category="{{ Str::slug($item->category->name) }}">
+                <a href="#"
+                    class="relative gallery-item w-full h-80 rounded-lg shadow-lg overflow-hidden open-gallery-modal"
+                    data-img="{{ $item['img'] }}" data-title="{{ $item['title'] }}" data-desc="{{ $item['desc'] }}"
+                    data-category="{{ Str::slug($item->category->name) }}">
 
-                        <!-- Gambar -->
-                        <img src="{{ $item['img'] }}" alt="Gallery Image" class="w-full h-2/3 object-cover">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        <img src="{{ $item['img'] }}" alt="{{ $item['title'] }}" class="w-full h-full object-cover">
+                        <!-- Overlay -->
+                        <div class="absolute inset-0 bg-black/40"></div>
+                    </div>
 
-                        <!-- Kategori floating pojok kanan atas -->
-                        <span
-                            class="absolute top-2 right-2 text-xs bg-mocca text-vanilla py-1 px-2 rounded-full font-semibold uppercase shadow">
+                    <!-- Category Top Right -->
+                    <div class="absolute top-3 right-3 backdrop-blur-md bg-chocolate/40 rounded-full px-3 py-1">
+                        <span class="text-xs text-white font-semibold uppercase">
                             {{ $item->category->name ?? 'None' }}
                         </span>
+                    </div>
 
-                        <!-- Judul -->
-                        <div class="p-4">
-                            <h3 class="text-lg font-bold text-chocolate">{{ $item['title'] }}</h3>
+                    <!-- Content Bottom -->
+                    <div class="absolute bottom-0 left-0 right-0 p-4">
+                        <div class="backdrop-blur-sm bg-mocca/40 rounded-lg px-3 py-2">
+                            <h3 class="text-lg font-bold text-white">{{ $item['title'] }}</h3>
                         </div>
+                        <p class="text-white/90 text-sm mt-2 line-clamp-3">{{ $item['desc'] }}</p>
                     </div>
                 </a>
             @endforeach
         </div>
-
 
         <!-- Ini buat mobile! -->
         <div class="lg:hidden">
@@ -274,7 +281,6 @@
                     modal.classList.remove('flex');
                 }, 300);
             };
-
             document.getElementById('galleryCloseModal').addEventListener('click', closeModal);
             document.getElementById('galleryModal').addEventListener('click', (e) => {
                 if (e.target.id === 'galleryModal') closeModal();

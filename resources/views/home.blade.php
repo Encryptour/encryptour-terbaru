@@ -111,17 +111,37 @@
                 A collection of exciting moments, from projects, achievements, to other memories. Choose a category
                 below to check it all out!
             </p>
+
             <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
                 @foreach ($data as $item)
-                    <div class="gallery-item bg-mocca rounded-lg shadow-lg overflow-hidden"
-                        data-category="{{ $item->category->name }}">
-                        <div class="p-4">
-                            <span
-                                class="text-sm bg-mocca/20 text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name }}</span>
-                            <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
-                            <p class="text-white text-sm mt-2">{{ $item['desc'] }}</p>
+                    <a href="{{ route('gallery.index') }}">
+
+                        <div class="relative gallery-item w-full h-80 rounded-lg shadow-lg overflow-hidden"
+                            data-category="{{ $item->category->name }}">
+
+                            <!-- Background Image -->
+                            <div class="absolute inset-0">
+                                <img src="{{ $item['img'] }}" alt="{{ $item['title'] }}" class="w-full h-full object-cover">
+                                <!-- Tinted Overlay -->
+                                <div class="absolute inset-0 bg-black/40"></div>
+                            </div>
+
+                            <!-- Category Top Right -->
+                            <div class="absolute top-3 right-3 backdrop-blur-md bg-chocolate/40 rounded-full px-3 py-1">
+                                <span class="text-xs text-white font-semibold uppercase">
+                                    {{ $item->category->name }}
+                                </span>
+                            </div>
+
+                            <!-- Content Bottom -->
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <div class="backdrop-blur-sm bg-mocca/40 rounded-lg px-3 py-2">
+                                    <h3 class="text-lg font-bold text-white">{{ $item['title'] }}</h3>
+                                </div>
+                                <p class="text-white/90 text-sm mt-2 line-clamp-3">{{ $item['desc'] }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
 
@@ -213,129 +233,129 @@
             });
         </script>
 
-    {{-- carousel gambar --}}
-    <script>
-        const carousel = document.getElementById('carousel-items');
-        const items = carousel.children;
-        const totalItems = items.length;
-        let currentIndex = 0;
-        let interval;
+        {{-- carousel gambar --}}
+        <script>
+            const carousel = document.getElementById('carousel-items');
+            const items = carousel.children;
+            const totalItems = items.length;
+            let currentIndex = 0;
+            let interval;
 
-        // Generate indicators
-        const indicatorsContainer = document.getElementById('indicators');
-        const indicators = [];
+            // Generate indicators
+            const indicatorsContainer = document.getElementById('indicators');
+            const indicators = [];
 
-        for (let i = 0; i < totalItems; i++) {
-            const indicator = document.createElement('button');
-            indicator.classList.add('w-3', 'shadow-xl', 'h-2', 'rounded-full', 'bg-vanilla', 'transition-all',
-                'duration-500');
-            indicator.setAttribute('aria-label', `Slide ${i + 1}`);
-            indicator.addEventListener('click', () => {
-                currentIndex = i;
+            for (let i = 0; i < totalItems; i++) {
+                const indicator = document.createElement('button');
+                indicator.classList.add('w-3', 'shadow-xl', 'h-2', 'rounded-full', 'bg-vanilla', 'transition-all',
+                    'duration-500');
+                indicator.setAttribute('aria-label', `Slide ${i + 1}`);
+                indicator.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarousel();
+                    resetInterval();
+                });
+                indicatorsContainer.appendChild(indicator);
+                indicators.push(indicator);
+            }
+
+            document.getElementById('prev0').addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
                 updateCarousel();
                 resetInterval();
             });
-            indicatorsContainer.appendChild(indicator);
-            indicators.push(indicator);
-        }
 
-        document.getElementById('prev0').addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
-            updateCarousel();
-            resetInterval();
-        });
-
-        document.getElementById('next0').addEventListener('click', () => {
-            currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
-            updateCarousel();
-            resetInterval();
-        });
-
-        function updateCarousel() {
-            const offset = -currentIndex * 100;
-            carousel.style.transform = `translateX(${offset}%)`;
-            updateIndicators();
-        }
-
-        function updateIndicators() {
-            indicators.forEach((indicator, index) => {
-                if (index === currentIndex) {
-                    indicator.classList.remove('bg-vanilla', 'w-3', 'opacity-50');
-                    indicator.classList.add('opacity-100', 'w-10', 'bg-chocolate');
-                } else {
-                    indicator.classList.remove('w-10', 'bg-chocolate', 'opacity-100');
-                    indicator.classList.add('opacity-50', 'w-3', 'bg-vanilla');
-                }
-            });
-        }
-
-        function startCarousel() {
-            const duration = currentIndex === 0 ? 3000 : 2500;
-            interval = setTimeout(() => {
+            document.getElementById('next0').addEventListener('click', () => {
                 currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
                 updateCarousel();
+                resetInterval();
+            });
+
+            function updateCarousel() {
+                const offset = -currentIndex * 100;
+                carousel.style.transform = `translateX(${offset}%)`;
+                updateIndicators();
+            }
+
+            function updateIndicators() {
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.remove('bg-vanilla', 'w-3', 'opacity-50');
+                        indicator.classList.add('opacity-100', 'w-10', 'bg-chocolate');
+                    } else {
+                        indicator.classList.remove('w-10', 'bg-chocolate', 'opacity-100');
+                        indicator.classList.add('opacity-50', 'w-3', 'bg-vanilla');
+                    }
+                });
+            }
+
+            function startCarousel() {
+                const duration = currentIndex === 0 ? 3000 : 2500;
+                interval = setTimeout(() => {
+                    currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
+                    updateCarousel();
+                    startCarousel();
+                }, duration);
+            }
+
+            function resetInterval() {
+                clearTimeout(interval);
                 startCarousel();
-            }, duration);
-        }
+            }
 
-        function resetInterval() {
-            clearTimeout(interval);
+            // Initialize the carousel
+            updateCarousel();
             startCarousel();
-        }
+        </script>
 
-        // Initialize the carousel
-        updateCarousel();
-        startCarousel();
-    </script>
+        {{-- carousel about us --}}
+        <script>
+            const aboutCarousel = document.getElementById('about-carousel-items');
+            const aboutItems = aboutCarousel.children;
+            const aboutTotal = aboutItems.length;
+            let aboutIndex = 0;
 
-    {{-- carousel about us --}}
-    <script>
-        const aboutCarousel = document.getElementById('about-carousel-items');
-        const aboutItems = aboutCarousel.children;
-        const aboutTotal = aboutItems.length;
-        let aboutIndex = 0;
+            // generate indicators
+            const aboutIndicators = document.getElementById('about-indicators');
+            const dots = [];
+            for (let i = 0; i < aboutTotal; i++) {
+                const dot = document.createElement('div');
+                dot.className = "w-3 h-3 rounded-full bg-chocolate opacity-40 transition-all";
+                dot.addEventListener('click', () => {
+                    aboutIndex = i;
+                    updateAbout();
+                });
+                aboutIndicators.appendChild(dot);
+                dots.push(dot);
+            }
 
-        // generate indicators
-        const aboutIndicators = document.getElementById('about-indicators');
-        const dots = [];
-        for (let i = 0; i < aboutTotal; i++) {
-            const dot = document.createElement('div');
-            dot.className = "w-3 h-3 rounded-full bg-chocolate opacity-40 transition-all";
-            dot.addEventListener('click', () => {
-                aboutIndex = i;
+            function updateAbout() {
+                aboutCarousel.style.transform = `translateX(-${aboutIndex * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("opacity-100", i === aboutIndex);
+                    dot.classList.toggle("w-6", i === aboutIndex);
+                });
+            }
+
+            document.getElementById('prevAbout').addEventListener('click', () => {
+                aboutIndex = (aboutIndex > 0) ? aboutIndex - 1 : aboutTotal - 1;
                 updateAbout();
             });
-            aboutIndicators.appendChild(dot);
-            dots.push(dot);
-        }
 
-        function updateAbout() {
-            aboutCarousel.style.transform = `translateX(-${aboutIndex * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle("opacity-100", i === aboutIndex);
-                dot.classList.toggle("w-6", i === aboutIndex);
+            document.getElementById('nextAbout').addEventListener('click', () => {
+                aboutIndex = (aboutIndex < aboutTotal - 1) ? aboutIndex + 1 : 0;
+                updateAbout();
             });
-        }
 
-        document.getElementById('prevAbout').addEventListener('click', () => {
-            aboutIndex = (aboutIndex > 0) ? aboutIndex - 1 : aboutTotal - 1;
+            // // auto slide
+            // setInterval(() => {
+            //     aboutIndex = (aboutIndex < aboutTotal - 1) ? aboutIndex + 1 : 0;
+            //     updateAbout();
+            // }, 3000);
+
+            // init
             updateAbout();
-        });
-
-        document.getElementById('nextAbout').addEventListener('click', () => {
-            aboutIndex = (aboutIndex < aboutTotal - 1) ? aboutIndex + 1 : 0;
-            updateAbout();
-        });
-
-        // // auto slide
-        // setInterval(() => {
-        //     aboutIndex = (aboutIndex < aboutTotal - 1) ? aboutIndex + 1 : 0;
-        //     updateAbout();
-        // }, 3000);
-
-        // init
-        updateAbout();
-    </script>
+        </script>
 
 
 </x-app-layout>

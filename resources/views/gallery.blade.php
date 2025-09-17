@@ -1,32 +1,32 @@
 <x-app-layout class="">
-    {{-- <div class="flex h-screen items-center justify-center text-wrap text-chocolate">
-        <div class="text items-center text-center">
-            <div class="w-50 h-50 relative my-10 mx-auto">
-                <img class="w-40 mx-auto h-40 transition-all  spin-reverse " src="{{ asset('assets/maintenance.png') }}"
-                    alt="">
-                <img class="h-24 w-24 absolute top-1/3 left-1/2 transition-all animate-spin-slow"
-                    src="{{ asset('assets/maintenance.png') }}" alt="">
-            </div>
-            <h1 class="text-xl font-bold md:font-extrabold md:text-4xl">OUR GALLERY IS COMING SOON.</h1>
-            <p class="text-lg md:text-2xl font-normal md:font-semibold">Relax, it's wont take a century!</p>
-        </div>
-        <style>
-            @keyframes spin-reverse {
-                0% {
-                    transform: rotate(0deg);
-                }
-
-                100% {
-                    transform: rotate(-360deg);
-                    /* Negative value for counterclockwise spin */
-                }
-            }
-        </style>
-        </style>
-    </div> --}}
-    {{-- hidden sementara ini --}}
     <section id="gallery" class="container mx-auto mt-20 py-24 px-6 bg-vanilla">
         <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-8 text-[#66391c]">Our Gallery</h1>
+
+        <!-- Overlay Modal Desktop -->
+        <div id="galleryModal"
+            class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition-opacity duration-300">
+
+            <!-- Konten Modal -->
+            <div id="galleryModalContent"
+                class="transform transition-all scale-95 opacity-0 w-[90vw] md:w-[70vw] h-[80vh] shadow-xl bg-white mx-auto relative rounded-2xl overflow-hidden duration-300 ease-out flex flex-col">
+
+                <!-- Tombol close -->
+                <div id="galleryCloseModal"
+                    class="absolute right-5 top-5 cursor-pointer text-gray-700 text-3xl hover:rotate-90 transition">
+                    ✖
+                </div>
+
+                <!-- Isi Modal -->
+                <div class="flex-1 overflow-y-auto">
+                    <img id="galleryModalImage" src="" alt="Gallery Image" class="w-full h-96 object-cover">
+                    <div class="p-6">
+                        <h2 id="galleryModalTitle" class="text-2xl font-bold text-[#66391c]"></h2>
+                        <p id="galleryModalDesc" class="text-gray-600 mt-3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Ini buat desktop! -->
         <div class="flex justify-center mb-12 hidden lg:flex">
@@ -44,7 +44,6 @@
                 @endforeach
             </div>
         </div>
-
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -90,21 +89,20 @@
             });
         </script>
 
-
         <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
             @foreach ($data as $item)
-                <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden"
-                    data-category="{{ Str::slug($item->category->name) }}">
-                    <img src="{{ $item['img'] }}" alt="Gallery Image" class="w-full">
-                    <div class="p-4">
-                        <span
-                            class="text-sm bg-mocca text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name ?? 'None' }}</span>
-                        <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
-                        <p class="text-gray-600 text-sm mt-2">{{ $item['desc'] }}</p>
-                        <a href="#" class="text-[#66391c] font-bold text-sm mt-4 inline-block hover:underline">read more
-                            →</a>
+                <a href="#" class="open-gallery-modal" data-img="{{ $item['img'] }}" data-title="{{ $item['title'] }}">
+                    <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden"
+                        data-category="{{ Str::slug($item->category->name) }}">
+                        <img src="{{ $item['img'] }}" alt="Gallery Image" class="w-full">
+                        <div class="p-4">
+                            <span
+                                class="text-sm bg-mocca text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name ?? 'None' }}</span>
+                            <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
+                            <p class="text-gray-600 text-sm mt-2">{{ $item['desc'] }}</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
 
@@ -213,4 +211,58 @@
             });
         });
     </script>
+
+    <!-- Ini buat modalnya -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Open Desktop Modal
+            document.querySelectorAll('.open-gallery-modal').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // ambil data dari tombol
+                    const img = btn.getAttribute('data-img');
+                    const title = btn.getAttribute('data-title');
+                    const desc = btn.getAttribute('data-desc');
+
+                    // isi modal
+                    document.getElementById('galleryModalImage').src = img;
+                    document.getElementById('galleryModalTitle').textContent = title;
+                    document.getElementById('galleryModalDesc').textContent = desc;
+
+                    // tampilkan modal
+                    const modal = document.getElementById('galleryModal');
+                    const modalContent = document.getElementById('galleryModalContent');
+
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+
+                    setTimeout(() => {
+                        modalContent.classList.add('opacity-100', 'scale-100');
+                        modalContent.classList.remove('opacity-0', 'scale-95');
+                    }, 10);
+                });
+            });
+
+            // Close Gallery Modal
+            const closeModal = () => {
+                const modal = document.getElementById('galleryModal');
+                const modalContent = document.getElementById('galleryModalContent');
+
+                modalContent.classList.add('opacity-0', 'scale-95');
+                modalContent.classList.remove('opacity-100', 'scale-100');
+
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            };
+
+            document.getElementById('galleryCloseModal').addEventListener('click', closeModal);
+            document.getElementById('galleryModal').addEventListener('click', (e) => {
+                if (e.target.id === 'galleryModal') closeModal();
+            });
+        });
+    </script>
+
 </x-app-layout>

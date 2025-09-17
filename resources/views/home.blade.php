@@ -22,10 +22,13 @@
                 @endforeach
             </div>
             <!-- Navigation Controls -->
-            <button id="prev0" class="absolute top-1/2 left-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">˂</button>
-            <button id="next0" class="absolute top-1/2 right-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">˃</button>
+            <button id="prev0"
+                class="absolute top-1/2 left-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">˂</button>
+            <button id="next0"
+                class="absolute top-1/2 right-2 -translate-y-1/2 font-montserrat text-lg hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all  backdrop-blur-sm text-white/50 w-[4vh] h-[4vh]  rounded-full">˃</button>
             <!-- Indicators -->
-            <div id="indicators" class="absolute transition-all duration-500 bottom-0 left-0 right-0 flex justify-center space-x-2 bg-gradient-to-t bg-opacity-20 md:from-vanilla/80 from-vanilla w-full pb-12 pt-4">
+            <div id="indicators"
+                class="absolute transition-all duration-500 bottom-0 left-0 right-0 flex justify-center space-x-2 bg-gradient-to-t bg-opacity-20 md:from-vanilla/80 from-vanilla w-full pb-12 pt-4">
                 <!-- Indicators will be generated here -->
             </div>
         </div>
@@ -84,11 +87,9 @@
             </div>
 
             <!-- Navigation Controls -->
-            <button id="prevAbout"
-                class="absolute left-4 top-1/2 -translate-y-1/2 font-montserrat text-lg bg-black/20 hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all 
+            <button id="prevAbout" class="absolute left-4 top-1/2 -translate-y-1/2 font-montserrat text-lg bg-black/20 hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all 
                    text-white/70 w-[4vh] h-[4vh] rounded-full flex items-center justify-center">˂</button>
-                    <button id="nextAbout"
-                        class="absolute right-4 top-1/2 -translate-y-1/2 font-montserrat text-lg bg-black/20 hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all 
+            <button id="nextAbout" class="absolute right-4 top-1/2 -translate-y-1/2 font-montserrat text-lg bg-black/20 hover:text-2xl bg-black/10 hover:bg-black/30 hover:w-[5vh] hover:h-[5vh] transition-all 
                    text-white/70 w-[4vh] h-[4vh] rounded-full flex items-center justify-center">˃</button>
         </div>
     </section>
@@ -108,66 +109,17 @@
             <h1 class="text-4xl md:text-5xl font-extrabold text-start mb-4 md:mb-8 text-[#66391c]">GALLERY</h1>
             <p class="max-w-4xl text-[#66391c] font-medium md:font-semibold md:text-base text-sm leading-relaxed mb-6">
                 A collection of exciting moments, from projects, achievements, to other memories. Choose a category
-                below to check it all out!</p>
-
-            <!-- Ini buat desktop! -->
-            {{-- <div class="flex justify-center mb-12 hidden lg:flex">
-                <div id="categoryButtons" class="flex gap-4 bg-mocca rounded-full px-4 py-2 text-lg font-bold">
-                    <button data-category="all"
-                        class="px-4 py-2 text-vanilla border-b-4 border-[#66391c] category-button active">all</button>
-
-                    @foreach ($categories as $cat)
-                        <button data-category="{{ strtolower($cat->name) }}"
-                            class="px-4 py-2 text-[#66391c] hover:text-[#F2E5BF] category-button">
-                            {{ strtolower($cat->name) }}
-                        </button>
-                    @endforeach
-                </div>
-            </div>
-
-
-            <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    if (window.innerWidth >= 1024) {
-                        const buttons = document.querySelectorAll('.category-button');
-                        const items = document.querySelectorAll('.gallery-item');
-                        buttons.forEach(button => {
-                            button.addEventListener('click', () => {
-                                const category = button.getAttribute('data-category');
-
-                                buttons.forEach(btn => {
-                                    btn.classList.remove('border-b-4');
-                                    btn.classList.add('text-[#66391c]');
-                                });
-                                button.classList.add('border-b-4');
-                                button.classList.remove('text-[#66391c]');
-
-                                items.forEach(item => {
-                                    if (category === 'all' || item.getAttribute('data-category') ===
-                                        category) {
-                                        item.style.display = 'block';
-                                    } else {
-                                        item.style.display = 'none';
-                                    }
-                                });
-                            });
-                        });
-                    }
-                });
-            </script> --}}
-
+                below to check it all out!
+            </p>
             <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
                 @foreach ($data as $item)
-                    <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden"
+                    <div class="gallery-item bg-mocca rounded-lg shadow-lg overflow-hidden"
                         data-category="{{ $item->category->name }}">
-                        <div class="p-4 bg-mocca">
+                        <div class="p-4">
                             <span
                                 class="text-sm bg-mocca/20 text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name }}</span>
                             <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
                             <p class="text-white text-sm mt-2">{{ $item['desc'] }}</p>
-                            <a href="#"
-                                class="text-[#66391c] font-bold text-sm mt-4 inline-block hover:underline">see
-                                more →</a>
                         </div>
                     </div>
                 @endforeach
@@ -190,15 +142,6 @@
                                             </span>
                                             <h3 class="text-xl font-bold mt-2 text-white">{{ $item['title'] }}</h3>
                                         </div>
-
-                                        <!-- Read More -->
-                                        <div class="flex justify-center mt-auto">
-                                            <a href="#"
-                                                class="text-[#66391c] font-bold text-xl py-1 px-2 rounded mx-4 flex flex-col items-center">
-                                                <span class="text-lg">&#8593;</span>
-                                                open
-                                            </a>
-                                        </div>
                                     </div>
 
                                     <!-- Background gambar -->
@@ -215,8 +158,6 @@
                     <div class="swiper-button-prev"></div>
                 </div>
             </div>
-
-
         </section>
 
         <!-- Ini library Swiper nya -->
@@ -254,36 +195,23 @@
                 stroke-width: 30px
             }
         </style>
-
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const swiper = new Swiper('.swiper', {
+            document.addEventListener("DOMContentLoaded", function () {
+                var swiper = new Swiper(".swiper", {
+                    loop: true, // biar muter terus
                     slidesPerView: 1,
                     spaceBetween: 20,
-                    effect: 'coverflow',
-                    coverflowEffect: {
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 1,
-                        slideShadows: true,
-                    },
-                    autoplay: {
-                        delay: 2000,
-                        disableOnInteraction: false,
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
                     },
                     pagination: {
-                        el: '.swiper-pagination',
+                        el: ".swiper-pagination",
                         clickable: true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
                     },
                 });
             });
         </script>
-    </div>
 
     {{-- carousel gambar --}}
     <script>

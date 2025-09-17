@@ -12,23 +12,32 @@
 
                 <!-- Tombol close -->
                 <div id="galleryCloseModal"
-                    class="absolute right-5 top-5 cursor-pointer text-gray-700 text-3xl hover:rotate-90 transition">
+                    class="absolute right-5 top-3 cursor-pointer text-chocolate text-3xl hover:rotate-90 transition z-20">
                     ✖
                 </div>
 
-                <!-- Isi Modal -->
-                <div class="flex-1 overflow-y-auto">
-                    <img id="galleryModalImage" src="" alt="Gallery Image" class="w-full h-96 object-cover">
-                    <div class="p-6">
-                        <h2 id="galleryModalTitle" class="text-2xl font-bold text-[#66391c]"></h2>
-                        <p id="galleryModalDesc" class="text-gray-600 mt-3"></p>
+                <!-- Judul (selalu fixed di atas modal) -->
+                <div class="bg-mocca backdrop-blur-sm text-vanilla p-4 text-center">
+                    <h2 id="galleryModalTitle" class="text-2xl font-bold"></h2>
+                </div>
+
+                <!-- Konten scrollable -->
+                <div class="flex-1 overflow-y-auto flex flex-col">
+                    <!-- Gambar -->
+                    <div class="w-full flex justify-center items-center bg-mocca">
+                        <img id="galleryModalImage" class="max-h-[60vh] w-auto object-contain mx-auto" src=""
+                            alt="Gallery Image">
+                    </div>
+
+                    <!-- Deskripsi -->
+                    <div class="p-6 bg-white">
+                        <p id="galleryModalDesc" class="text-gray-700 leading-relaxed"></p>
                     </div>
                 </div>
             </div>
         </div>
 
-
-        <!-- Ini buat desktop! -->
+        <!-- Ini buat Kategori -->
         <div class="flex justify-center mb-12 hidden lg:flex">
             <div id="categoryButtons" class="flex gap-4 bg-mocca px-4 py-2 rounded-full text-sm font-semibold">
                 <button data-category="all"
@@ -89,12 +98,14 @@
             });
         </script>
 
+        <!-- Ini buat desktop! -->
         <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
             @foreach ($data as $item)
-                <a href="#" class="open-gallery-modal" data-img="{{ $item['img'] }}" data-title="{{ $item['title'] }}">
+                <a href="#" class="open-gallery-modal" data-img="{{ $item['img'] }}" data-title="{{ $item['title'] }}"
+                    data-desc="{{ $item['desc'] }}">
                     <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden"
                         data-category="{{ Str::slug($item->category->name) }}">
-                        <img src="{{ $item['img'] }}" alt="Gallery Image" class="w-full">
+                        <img src="{{ $item['img'] }}" alt="Gallery Image" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <span
                                 class="text-sm bg-mocca text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name ?? 'None' }}</span>
@@ -137,7 +148,6 @@
                     @endforeach
                 </div>
                 <!-- Pagination dan Navigation Opsional -->
-                {{-- <div class="swiper-pagination"></div> --}}
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>

@@ -101,21 +101,28 @@
         <!-- Ini buat desktop! -->
         <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
             @foreach ($data as $item)
-                <a href="#" class="open-gallery-modal" data-img="{{ $item['img'] }}" data-title="{{ $item['title'] }}"
-                    data-desc="{{ $item['desc'] }}">
-                    <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden"
+                <a href="#" class="open-gallery-modal" data-img="{{ $item['img'] }}" data-title="{{ $item['title'] }}" data-desc="{{ $item['desc'] }}">
+                    <div class="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden relative w-full h-[360px]"
                         data-category="{{ Str::slug($item->category->name) }}">
-                        <img src="{{ $item['img'] }}" alt="Gallery Image" class="w-full h-48 object-cover">
+
+                        <!-- Gambar -->
+                        <img src="{{ $item['img'] }}" alt="Gallery Image" class="w-full h-2/3 object-cover">
+
+                        <!-- Kategori floating pojok kanan atas -->
+                        <span
+                            class="absolute top-2 right-2 text-xs bg-mocca text-vanilla py-1 px-2 rounded-full font-semibold uppercase shadow">
+                            {{ $item->category->name ?? 'None' }}
+                        </span>
+
+                        <!-- Judul -->
                         <div class="p-4">
-                            <span
-                                class="text-sm bg-mocca text-[#66391c] py-1 px-2 rounded-full font-semibold uppercase">{{ $item->category->name ?? 'None' }}</span>
-                            <h3 class="text-xl font-bold mt-4">{{ $item['title'] }}</h3>
-                            <p class="text-gray-600 text-sm mt-2">{{ $item['desc'] }}</p>
+                            <h3 class="text-lg font-bold text-chocolate">{{ $item['title'] }}</h3>
                         </div>
                     </div>
                 </a>
             @endforeach
         </div>
+
 
         <!-- Ini buat mobile! -->
         <div class="lg:hidden">

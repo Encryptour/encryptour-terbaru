@@ -72,7 +72,25 @@ class MahasiswaController extends Controller
         }
 
 
-        $data = $query->paginate($perPage)->withQueryString();
+        $data = $query->select('nim',
+        'email_adress',
+        'nama_lengkap',
+        'nama_panggilan',
+        'agama',
+        'asal',
+        'ttl',
+        'alamat_rumah',
+        'alamat_kos',
+        'hobi',
+        'quotes',
+        'tempat_makan_fav',
+        'no_wa',
+        'user_ig',
+        'formal_picture',
+        'non_formal_picture',
+        'formal_picture_del',
+        'non_formal_picture_del',
+        'mdpl')->paginate($perPage)->withQueryString();
 
         return view('biodata', [
             'data' => $data, // Sudah berupa LengthAwarePaginator

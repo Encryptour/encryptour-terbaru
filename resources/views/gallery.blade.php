@@ -236,7 +236,6 @@
         });
     </script>
 
-    <!-- Ini buat modalnya -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Open Desktop Modal
@@ -252,7 +251,7 @@
                     // isi modal
                     document.getElementById('galleryModalImage').src = img;
                     document.getElementById('galleryModalTitle').textContent = title;
-                    document.getElementById('galleryModalDesc').textContent = desc;
+                    document.getElementById('galleryModalDesc').innerHTML = desc.replace(/\n/g, "<br>");
 
                     // tampilkan modal
                     const modal = document.getElementById('galleryModal');
@@ -281,11 +280,19 @@
                     modal.classList.remove('flex');
                 }, 300);
             };
+
+            // tombol X
             document.getElementById('galleryCloseModal').addEventListener('click', closeModal);
+
+            // klik luar modal
             document.getElementById('galleryModal').addEventListener('click', (e) => {
                 if (e.target.id === 'galleryModal') closeModal();
             });
+
+            // tekan Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") closeModal();
+            });
         });
     </script>
-
 </x-app-layout>

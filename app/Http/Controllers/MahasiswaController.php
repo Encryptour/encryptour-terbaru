@@ -90,7 +90,7 @@ class MahasiswaController extends Controller
         'non_formal_picture',
         'formal_picture_del',
         'non_formal_picture_del',
-        'mdpl')->paginate($perPage)->withQueryString();
+        'mdpl')->paginate($perPage);
 
         return view('biodata', [
             'data' => $data, // Sudah berupa LengthAwarePaginator

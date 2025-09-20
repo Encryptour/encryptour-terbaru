@@ -72,7 +72,7 @@
                         @foreach ($aboutSlides as $slide)
                             <div class="min-w-full flex flex-col items-center justify-center text-center px-10">
                                 @if ($slide['type'] === 'title')
-                                    <img src="{{ asset('assets/logo-encryptour.png') }}" alt="logo"
+                                    <img src="{{ asset('assets/Logo Encryptour baru.png') }}" alt="logo"
                                         class="w-auto h-[100px] md:h-[200px] xl:h-[250px] mb-0">
                                     <h2 class="text-2xl md:text-3xl font-bold">{{ $slide['content'] }}</h2>
                                 @else

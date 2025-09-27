@@ -1,69 +1,62 @@
 <x-app-layout>
-
     <!-- Modal Wrapper -->
     <div id="modal" class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+        <!-- Content Modal -->
+        <div id="modalContent" class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-xl
+           bg-gradient-to-tl from-[#AD7D4F] to-[#EDB47E] mx-auto relative rounded-2xl overflow-hidden
+           flex flex-col md:grid md:grid-cols-[auto_1fr]">
 
-        <!-- Desktop Modal -->
-        <div id="modalContent"
-            class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-xl hidden md:grid grid-cols-[auto_1fr] bg-gradient-to-tl from-[#AD7D4F] to-[#EDB47E] mx-auto relative rounded-2xl overflow-hidden">
-
-            <!-- Tombol close (luar card, tapi dalam modal) -->
+            <!-- Tombol close -->
             <div id="closeModal"
                 class="absolute right-5 top-5 cursor-pointer text-chocolate text-3xl hover:rotate-90 transition">
                 ✖
             </div>
 
-            <!-- KIRI: foto (fixed, no scroll) -->
-            <div class="flex flex-col justify-evenly p-6 h-full">
-                <!-- Foto -->
-                <div class="flex items-start justify-center">
-                    <img id="modalImage" class="bg-vanilla w-[260px] max-h-[60vh] object-cover rounded-xl shadow-lg"
+            <!-- KIRI: Foto + Sosmed -->
+            <div class="flex flex-col justify-evenly p-4 md:p-6 h-auto md:h-full items-center">
+                <div class="flex items-start justify-center mb-4 md:mb-0">
+                    <img id="modalImage"
+                        class="bg-vanilla w-[200px] sm:w-[240px] md:w-[260px] max-h-[40vh] md:max-h-[60vh] object-cover rounded-xl shadow-lg"
                         alt="">
                 </div>
-
-                <!-- Bagian bawah: icon sosmed -->
                 <div class="w-full flex justify-center items-center gap-4 mt-2">
                     <a id="modalIg" href="">
-                        <i class="fa fa-instagram text-chocolate hover:scale-110 transition"
-                            style="font-size: 3rem;"></i>
+                        <i class="fa fa-instagram text-chocolate hover:scale-110 transition" style="font-size: 3rem;"></i>
                     </a>
                     <a id="modalEmail" href="">
-                        <i class="fa fa-envelope text-chocolate hover:scale-110 transition"
-                            style="font-size: 3rem;"></i>
+                        <i class="fa fa-envelope text-chocolate hover:scale-110 transition" style="font-size: 3rem;"></i>
                     </a>
                     <a id="modalWa" href="">
-                        <i class="fa fa-whatsapp text-chocolate hover:scale-110 transition"
-                            style="font-size: 3rem;"></i>
+                        <i class="fa fa-whatsapp text-chocolate hover:scale-110 transition" style="font-size: 3rem;"></i>
                     </a>
                 </div>
             </div>
 
-
-            <!-- KANAN: Scrollable card (lebih kecil, ada margin) -->
-            <div class="flex items-start justify-start p-6 h-full min-h-0">
+            <!-- KANAN: Scrollable card -->
+            <div class="flex items-start justify-start p-4 md:p-6 h-full min-h-0">
                 <div
-                    class="bg-chocolate rounded-2xl shadow-inner p-6 w-full h-full overflow-y-auto max-w-[95%] scroll-card">
-
+                    class="bg-chocolate rounded-2xl shadow-inner p-4 md:p-6 w-full h-full overflow-y-auto max-w-[95%] scroll-card">
                     <!-- Nama -->
-                    <div class="mb-8">
+                    <div class="mb-6 md:mb-8 text-center md:text-left">
                         <h4 id="modalNamaLengkap" class="text-sm text-orange-200 font-light capitalize"></h4>
-                        <h1 id="modalNamaPanggilan" class="text-6xl md:text-7xl font-bold uppercase text-orange-50">
+                        <h1 id="modalNamaPanggilan"
+                            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase text-orange-50">
                         </h1>
                     </div>
 
                     <!-- Quotes -->
-                    <div class="mb-6">
-                        <p id="modalQuotes" class="text-orange-100 italic text-lg"></p>
+                    <div class="mb-4 md:mb-6">
+                        <p id="modalQuotes" class="text-orange-100 italic text-base sm:text-lg"></p>
                     </div>
 
                     <!-- Data ringkas -->
-                    <div class="mb-6">
-                        <ul class="text-orange-100 text-sm mb-1 flex flex-wrap">
+                    <div class="mb-4 md:mb-6">
+                        <ul class="text-orange-100 text-xs sm:text-sm mb-1 flex flex-wrap">
                             <li class="w-1/3">Asal</li>
                             <li class="w-1/3">NIM</li>
                             <li class="w-1/3">TTL</li>
                         </ul>
-                        <ul class="text-orange-50 font-semibold flex flex-wrap">
+                        <ul class="text-orange-50 font-semibold flex flex-wrap text-sm sm:text-base">
                             <li id="modalAsal" class="w-1/3"></li>
                             <li id="modalNim" class="w-1/3"></li>
                             <li id="modalTtl" class="w-1/3"></li>
@@ -71,26 +64,26 @@
                     </div>
 
                     <!-- Alamat Kos -->
-                    <div class="mb-6">
+                    <div class="mb-4 md:mb-6">
                         <h1 class="text-orange-100 font-light">Alamat Kos</h1>
                         <h1 id="modalAlamatKos" class="text-orange-50 font-semibold"></h1>
                     </div>
 
                     <!-- Alamat Rumah + MDPL -->
-                    <div class="flex flex-wrap gap-4 mb-6">
-                        <div class="w-1/2">
+                    <div class="flex flex-col sm:flex-row gap-4 mb-4 md:mb-6">
+                        <div class="w-full sm:w-1/2">
                             <h1 class="text-orange-100 font-light">Alamat Rumah</h1>
                             <h1 id="modalAlamatRumah" class="text-orange-50 font-semibold max-h-16 overflow-y-auto">
                             </h1>
                         </div>
-                        <div class="w-1/3">
+                        <div class="w-full sm:w-1/3">
                             <h1 class="text-orange-100 font-light">Ketinggian Rumah</h1>
                             <h1 id="modalMdpl" class="text-orange-50 font-semibold"></h1>
                         </div>
                     </div>
 
                     <!-- Hobi -->
-                    <div class="mb-6">
+                    <div class="mb-4 md:mb-6">
                         <h1 class="text-orange-100 font-light">Hobi</h1>
                         <h1 id="modalHobi" class="text-orange-50 font-semibold"></h1>
                     </div>
@@ -100,83 +93,6 @@
                         <h1 class="text-orange-100 font-light">Tempat Makan Favorit</h1>
                         <h1 id="modalTempatMakanFav" class="text-orange-50 font-semibold"></h1>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- Mobile Modal -->
-        <div id="modalContent2"
-            class="transform transition-all scale-95 opacity-0 md:hidden w-[95vw] my-4 h-[90vh] bg-mocca relative shadow-lg rounded-xl mx-auto overflow-hidden">
-
-            <div
-                class="w-full flex justify-center items-center relative h-12 bg-gradient-to-l from-[#AD7D4F] from-60% to-[#EDB47E]">
-                <h1 id="modalNamaPanggilan2" class="font-montserrat font-bold text-vanilla uppercase text-xl"></h1>
-                <button id="closeModal2"
-                    class="absolute p-1 right-6 top-1 hover:rotate-180 hover:duration-500 hover:scale-90 transition cursor-pointer text-chocolate text-xl">
-                    x
-                </button>
-            </div>
-
-            <div class="w-full h-1/3 bg-transparent flex justify-center bg-white relative items-end">
-                <img id="modalImage2" class="object-cover h-[125%] absolute -bottom-20" alt="">
-            </div>
-
-            <div class="w-full h-1/2 bg-gradient-to-tr from-[#AD7D4F] from-60% to-[#EDB47E] relative p-6">
-                <div class="w-full">
-                    <h1 id="modalNamaLengkap2" class="text-base font-semibold text-vanilla mb-2"></h1>
-                </div>
-
-                <div id="modalQuotes2" class="w-full h-12 text-vanilla overflow-y-auto text-xs font-light mb-4">
-                </div>
-
-                <!-- Data ringkas -->
-                <div class="asal-nim-ttl">
-                    <div class="w-full flex text-xs font-normal text-vanilla justify-evenly">
-                        <h3 class="w-1/3">ASAL</h3>
-                        <h3 class="w-1/3">NIM</h3>
-                        <h3 class="w-1/3">TTL</h3>
-                    </div>
-                    <div class="w-full flex text-xs font-medium text-vanilla justify-evenly mb-2">
-                        <h3 id="modalAsal2" class="w-1/3"></h3>
-                        <h3 id="modalNim2" class="w-1/3"></h3>
-                        <h3 id="modalTtl2" class="w-1/3"></h3>
-                    </div>
-                </div>
-
-                <!-- Alamat -->
-                <div class="alamat mb-2">
-                    <div class="w-full text-vanilla text-xs font-normal flex justify-evenly">
-                        <h3 class="w-1/3">Alamat Kos</h3>
-                        <h3 class="w-1/3"></h3>
-                        <h3 class="w-1/3">Alamat Rumah</h3>
-                    </div>
-                    <div class="w-full text-vanilla text-xs font-medium flex justify-evenly">
-                        <h3 id="modalAlamatKos2" class="w-2/3 overflow-y-auto h-14 pr-4"></h3>
-                        <h3 id="modalAlamatRumah2" class="w-1/3 overflow-y-auto h-14"></h3>
-                    </div>
-                </div>
-
-                <!-- Unik -->
-                <div class="unique">
-                    <div class="w-full text-vanilla text-xs font-normal flex justify-evenly">
-                        <h3 class="w-1/3">Ketinggian Rumah</h3>
-                        <h3 class="w-1/3">Hobi</h3>
-                        <h3 class="w-1/3">Tempat Makan Fav.</h3>
-                    </div>
-                    <div class="w-full text-vanilla text-xs font-medium flex justify-evenly">
-                        <h3 id="modalMdpl2" class="w-1/3"></h3>
-                        <h3 id="modalHobi2" class="w-1/3"></h3>
-                        <h3 id="modalTempatMakanFav2" class="w-1/3"></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full h-12 absolute bottom-0 bg-chocolate md:hidden">
-                <div class="w-full h-1 bg-vanilla"></div>
-                <div class="w-full flex justify-center items-center h-full">
-                    <!-- Social icons (opsional) -->
                 </div>
             </div>
         </div>
@@ -203,34 +119,17 @@
             document.getElementById('modalEmail').href = `mailto:${itemData.email_adress}`;
             document.getElementById('modalWa').href = `https://wa.me/${itemData.no_wa}`;
 
-            // Mobile modal
-            document.getElementById('modalImage2').src = itemData.non_formal_picture;
-            document.getElementById('modalNamaLengkap2').innerText = itemData.nama_lengkap;
-            document.getElementById('modalNamaPanggilan2').innerText = itemData.nama_panggilan;
-            document.getElementById('modalQuotes2').innerText = itemData.quotes;
-            document.getElementById('modalAsal2').innerText = itemData.asal;
-            document.getElementById('modalNim2').innerText = itemData.nim;
-            document.getElementById('modalTtl2').innerText = itemData.ttl;
-            document.getElementById('modalAlamatKos2').innerText = itemData.alamat_kos;
-            document.getElementById('modalAlamatRumah2').innerText = itemData.alamat_rumah;
-            document.getElementById('modalMdpl2').innerText = itemData.mdpl;
-            document.getElementById('modalHobi2').innerText = itemData.hobi;
-            document.getElementById('modalTempatMakanFav2').innerText = itemData.tempat_makan_fav;
-
             // Show modal + animasi
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modalContent');
-            const modalContent2 = document.getElementById('modalContent2');
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modalContent.classList.add('opacity-100', 'scale-100');
                 modalContent.classList.remove('opacity-0', 'scale-95');
-                modalContent2.classList.add('opacity-100', 'scale-100');
-                modalContent2.classList.remove('opacity-0', 'scale-95');
             }, 10);
         }
 
-        // Tutup modal (desktop)
+        // Tutup modal
         document.getElementById('closeModal').addEventListener('click', () => {
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modalContent');
@@ -240,18 +139,8 @@
                 modal.classList.add('hidden');
             }, 300);
         });
-
-        // Tutup modal (mobile)
-        document.getElementById('closeModal2').addEventListener('click', () => {
-            const modal = document.getElementById('modal');
-            const modalContent2 = document.getElementById('modalContent2');
-            modalContent2.classList.remove('opacity-100', 'scale-100');
-            modalContent2.classList.add('opacity-0', 'scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        });
     </script>
+
 
     <div class="container mt-20 mx-auto grid grid-cols-3  gap-6">
         @if ($order == 'asc')
@@ -290,41 +179,32 @@
                 </svg>
             </button>
         </form>
-        <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black/50">
-        </div>
+
         @forelse ($data as $item)
-            {{-- <button> --}}
-                <div onclick="openModal(this)" data-item="{{ json_encode($item) }}"
-                    style="background-image: url('{{ $item['formal_picture'] }}');"
-                    class="card overflow-hidden group flex items-end mx-auto aspect-square xl:w-[350px] lg:w-[280px] sm:w-[210px] w-[108px] transition-all duration-700 ease-in-out border-chocolate border-2 hover:bg-chocolate text-black hover:text-vanilla :hover:text-opacity-75">
-                    <div class="grid grid-cols-2">
-                        <div class="flex flex-col mb-2 sm:mb-4 lg:mb-12 ml-1 sm:ml-2 lg:ml-6 z-10">
-                            <div
-                                class="text-xs drop-shadow-[1px_-1px_8px_rgba(255,255,255,1)] group-hover:drop-shadow-none sm:drop-shadow-none sm:text-sm">
-                                {{ ucwords(strtolower($item['nama_lengkap'])) }}
-                            </div>
-                            <div class="hidden sm:block text-2xl uppercase font-bold mb-2 ">{{ $item['nama_panggilan'] }}
-                            </div>
-                            <div class="hidden sm:block text-sm">{{ $item['nim'] }}</div>
-                            <div class="hidden sm:block text-sm">{{ $item['asal'] }}</div>
-                            <div class="hidden sm:block text-sm">{{ $item['mdpl'] }} MDPL</div>
+            <div onclick="openModal(this)" data-item="{{ json_encode($item) }}"
+                style="background-image: url('{{ $item['formal_picture'] }}');"
+                class="card overflow-hidden group flex items-end mx-auto aspect-square xl:w-[350px] lg:w-[280px] sm:w-[210px] w-[108px] transition-all duration-700 ease-in-out border-chocolate border-2 hover:bg-chocolate text-black hover:text-vanilla :hover:text-opacity-75">
+                <div class="grid grid-cols-2">
+                    <div class="flex flex-col mb-2 sm:mb-4 lg:mb-12 ml-1 sm:ml-2 lg:ml-6 z-10">
+                        <div
+                            class="text-xs drop-shadow-[1px_-1px_8px_rgba(255,255,255,1)] group-hover:drop-shadow-none sm:drop-shadow-none sm:text-sm">
+                            {{ ucwords(strtolower($item['nama_lengkap'])) }}
                         </div>
-                        <div class=""></div>
+                        <div class="hidden sm:block text-2xl uppercase font-bold mb-2 ">
+                            {{ $item['nama_panggilan'] }}
+                        </div>
+                        <div class="hidden sm:block text-sm">{{ $item['nim'] }}</div>
+                        <div class="hidden sm:block text-sm">{{ $item['asal'] }}</div>
+                        <div class="hidden sm:block text-sm">{{ $item['mdpl'] }} MDPL</div>
                     </div>
-                    {{-- <div class="z-0
-                                                                xl:group-hover:scale-125 group-hover:scale-150
-                                                                xl:group-hover:-translate-x-6 lg:group-hover:-translate-x-8 sm:group-hover:-translate-x-6 group-hover:-translate-x-1
-                                                                xl:group-hover:-translate-y-8 lg:group-hover:-translate-y-12 sm:group-hover:-translate-y-8 group-hover:-translate-y-2
-                                                                transition-transform">
-                        <img src="{{ asset('/storage/biodata/foto-formal/' . $item['formal_picture']) }}" alt="" srcset=""
-                            class="object-cover w-full h-full max-w-[360px] max-h-[360px]">
-                    </div> --}}
+                    <div class=""></div>
                 </div>
-                {{--
-            </button> --}}
+            </div>
         @empty
             <div>No data found.</div>
         @endforelse
+
+
     </div>
     <div class="container my-20 mx-auto flex gap-2 justify-center">
         @if ($currentPage > 1)

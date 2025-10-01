@@ -1,11 +1,14 @@
 {{-- default_card.blade.php --}}
+
+{{-- PHP JANGAN DIUBAH!! --}}
 @php
     $modalId = "modal_" . $item['nim'];
     $modalContentId = "modalContent_" . $item['nim'];
     $closeModalId = "closeModal_" . $item['nim'];
 @endphp
+{{-- PHP JANGAN DIUBAH!! --}}
 
-{{-- Card --}}
+{{-- Card (Boleh Diubah) --}}
 <div onclick="openModal('{{ $modalId }}', '{{ $modalContentId }}', this)" 
      data-item="{{ json_encode($item) }}"
      style="background-image: url('{{ $item['formal_picture'] }}');"
@@ -26,7 +29,7 @@
 </div>
 {{-- End Card --}}
 
-{{-- Modal --}}
+{{-- Modal (Boleh Diubah) --}}
 <div id="{{ $modalId }}" class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
     <div id="{{ $modalContentId }}" 
          class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-xl

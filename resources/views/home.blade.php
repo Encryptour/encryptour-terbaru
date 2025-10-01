@@ -29,7 +29,6 @@
             <!-- Indicators -->
             <div id="indicators"
                 class="absolute transition-all duration-500 bottom-0 left-0 right-0 flex justify-center space-x-2 bg-gradient-to-t bg-opacity-20 md:from-vanilla/80 from-vanilla w-full pb-12 pt-4">
-                <!-- Indicators will be generated here -->
             </div>
         </div>
     </section>
@@ -72,7 +71,7 @@
                         @foreach ($aboutSlides as $slide)
                             <div class="min-w-full flex flex-col items-center justify-center text-center px-10">
                                 @if ($slide['type'] === 'title')
-                                    <img src="{{ asset('assets/Logo Encryptour baru.png') }}" alt="logo"
+                                    <img src="{{ asset('assets/Logo Encryptour.png') }}" alt="logo"
                                         class="w-auto h-[100px] md:h-[200px] xl:h-[250px] mb-0">
                                     <h2 class="text-2xl md:text-3xl font-bold">{{ $slide['content'] }}</h2>
                                 @else
@@ -290,7 +289,7 @@
             }
 
             function startCarousel() {
-                const duration = currentIndex === 0 ? 3000 : 2500;
+                const duration = currentIndex === 0 ? 10000 : 3000;
                 interval = setTimeout(() => {
                     currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
                     updateCarousel();
@@ -352,8 +351,6 @@
             //     aboutIndex = (aboutIndex < aboutTotal - 1) ? aboutIndex + 1 : 0;
             //     updateAbout();
             // }, 3000);
-
-            // init
             updateAbout();
         </script>
 

@@ -16,14 +16,11 @@ class MahasiswaController extends Controller
     {
         $searchQuery = $request->input('search');
         $order = $request->input('order', 'asc');
-        $perPage = 15;
-
         $query = mahasiswa::query();
 
 
         if (!empty($searchQuery)) {
             if ($searchQuery == 'sokinpadim') {
-
 
                 $today = Carbon::today();
 
@@ -90,14 +87,12 @@ class MahasiswaController extends Controller
         'non_formal_picture',
         'formal_picture_del',
         'non_formal_picture_del',
-        'mdpl')->paginate($perPage);
+        'mdpl')->get();
 
         return view('biodata', [
-            'data' => $data, // Sudah berupa LengthAwarePaginator
+            'data' => $data,
             'searchQuery' => $searchQuery,
             'order' => $order,
-            'currentPage' => $data->currentPage(),
-            'totalPages' => $data->lastPage(),
         ]);
     }
 }

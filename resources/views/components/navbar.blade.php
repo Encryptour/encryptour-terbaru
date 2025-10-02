@@ -21,12 +21,12 @@
                     </a>
                     <a href="/identity"
                         class="{{ request()->is('identity') ? 'underline underline-offset-4 animate-floatglow' : ''  }} rounded-md px-3 py-2 text-md font-semibold text-vanilla hover:bg-chocolate hover:text-vanilla transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
-                        <i class="fa fa-users"></i>
+                        <i class="fa fa-info-circle"></i>
                         Identity
                     </a>
                     <a href="/biodata"
-                        class="{{ request()->is('biodata') ? 'underline underline-offset-4 animate-floatglow' : ''  }} rounded-md px-3 py-2 text-md font-semibold text-vanilla hover:bg-chocolate hover:text-vanilla transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
-                        <i class="fa fa-info-circle"></i>
+                        class="{{ request()->is('biodata') ? 'underline underline-offset-4 animate-floatglow' : ''  }} rounded-md px-3 py-2 text-md font-semibold text-vanilla hover:bg-chocolate hover:text-vanilla transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">  
+                        <i class="fa fa-users"></i>
                         Biodata
                     </a>
                     <a href="/gallery"
@@ -68,12 +68,12 @@
             </a>
             <a href="/identity"
                 class="block rounded-md px-3 py-2 text-base font-semibold text-vanilla hover:bg-chocolate">
-                <i class="fa fa-users"></i>
+                <i class="fa fa-info-circle"></i>
                 Identity
             </a>
             <a href="/biodata"
-                class="block rounded-md px-3 py-2 text-base font-semibold text-vanilla hover:bg-chocolate">
-                <i class="fa fa-info-circle"></i>
+            class="block rounded-md px-3 py-2 text-base font-semibold text-vanilla hover:bg-chocolate">
+            <i class="fa fa-users"></i>
                 Biodata
             </a>
             <a href="/gallery"

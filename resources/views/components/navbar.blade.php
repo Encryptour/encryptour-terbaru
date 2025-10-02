@@ -7,7 +7,7 @@
                 <a href="/" class="flex items-center gap-2 text-2xl font-bold text-vanilla">
                     <img class="h-10 w-auto md:h-14 lg:h-15" src="{{ asset('assets/Logo Encryptour.png') }}"
                         alt="Logo Encryptour">
-                    <span class="hidden sm:inline">ENCRYPTOUR (Development)</span>
+                    <span class="hidden sm:inline">ENCRYPTOUR (Beta)</span>
                 </a>
             </div>
 

@@ -7,7 +7,7 @@
                 <a href="/" class="flex items-center gap-2 text-2xl font-bold text-vanilla">
                     <img class="h-10 w-auto md:h-14 lg:h-15" src="{{ asset('assets/Logo Encryptour.png') }}"
                         alt="Logo Encryptour">
-                    <span class="hidden sm:inline">ENCRYPTOUR</span>
+                    <span class="hidden sm:inline">ENCRYPTOUR (Beta)</span>
                 </a>
             </div>
 
@@ -21,12 +21,12 @@
                     </a>
                     <a href="/identity"
                         class="{{ request()->is('identity') ? 'underline underline-offset-4 animate-floatglow' : ''  }} rounded-md px-3 py-2 text-md font-semibold text-vanilla hover:bg-chocolate hover:text-vanilla transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
-                        <i class="fa fa-users"></i>
+                        <i class="fa fa-info-circle"></i>
                         Identity
                     </a>
                     <a href="/biodata"
-                        class="{{ request()->is('biodata') ? 'underline underline-offset-4 animate-floatglow' : ''  }} rounded-md px-3 py-2 text-md font-semibold text-vanilla hover:bg-chocolate hover:text-vanilla transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
-                        <i class="fa fa-info-circle"></i>
+                        class="{{ request()->is('biodata') ? 'underline underline-offset-4 animate-floatglow' : ''  }} rounded-md px-3 py-2 text-md font-semibold text-vanilla hover:bg-chocolate hover:text-vanilla transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">  
+                        <i class="fa fa-users"></i>
                         Biodata
                     </a>
                     <a href="/gallery"
@@ -68,12 +68,12 @@
             </a>
             <a href="/identity"
                 class="block rounded-md px-3 py-2 text-base font-semibold text-vanilla hover:bg-chocolate">
-                <i class="fa fa-users"></i>
+                <i class="fa fa-info-circle"></i>
                 Identity
             </a>
             <a href="/biodata"
-                class="block rounded-md px-3 py-2 text-base font-semibold text-vanilla hover:bg-chocolate">
-                <i class="fa fa-info-circle"></i>
+            class="block rounded-md px-3 py-2 text-base font-semibold text-vanilla hover:bg-chocolate">
+            <i class="fa fa-users"></i>
                 Biodata
             </a>
             <a href="/gallery"

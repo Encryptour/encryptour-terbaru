@@ -8,8 +8,8 @@
 {{-- PHP JANGAN DIUBAH!! --}}
 
 {{-- Card (Boleh Diubah) --}}
-<div onclick="openModal('{{ $modalId }}', '{{ $modalContentId }}', this)" 
-     data-item="{{ json_encode($item) }}"
+<div onclick="openModal('{{ $modalId }}', '{{ $modalContentId }}', this)" {{-- Jangan Diubah! --}}
+     data-item="{{ json_encode($item) }}" {{-- Jangan Diubah! --}}
      style="background-image: url('{{ $item['formal_picture'] }}');"
      class="card overflow-hidden group flex items-end mx-auto aspect-square xl:w-[350px] lg:w-[280px] sm:w-[210px] w-[108px] transition-all duration-700 ease-in-out border-chocolate border-2 hover:bg-chocolate text-black hover:text-vanilla hover:text-opacity-75">
     <div class="grid grid-cols-2">
@@ -26,19 +26,20 @@
         </div>
     </div>
 </div>
+{{-- Harus Ada Nama, Nim, Asal, MDPL --}}
 {{-- End Card --}}
 
 {{-- Modal (Boleh Diubah) --}}
 <div id="{{ $modalId }}" class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
-    <div id="{{ $modalContentId }}" 
+    <div id="{{ $modalContentId }}" {{-- Jangan Diubah! --}}
          class="transform transition-all scale-95 opacity-0 w-[90vw] h-[90vh] shadow-xl
                 bg-gradient-to-tl from-[#AD7D4F] to-[#EDB47E] mx-auto relative rounded-2xl overflow-hidden
                 flex flex-col md:grid md:grid-cols-[auto_1fr]">
 
         <!-- Tombol close -->
-        <div id="{{ $closeModalId }}"
+        <div id="{{ $closeModalId }}" {{-- Jangan Diubah! --}}
             class="absolute right-5 top-5 cursor-pointer text-chocolate text-3xl hover:rotate-90 transition"
-            onclick="closeModal('{{ $modalId }}', '{{ $modalContentId }}')">
+            onclick="closeModal('{{ $modalId }}', '{{ $modalContentId }}')"> {{-- Jangan Diubah! --}}
             ✖
         </div>
 

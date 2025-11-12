@@ -29,7 +29,7 @@
         </div>
 
         {{-- Cards --}}
-        <div class="grid grid-cols-3 gap-6">
+        <div id="biodataGrid"  class="grid grid-cols-3 gap-6">
             @forelse ($data as $item)
                 @switch($item['nim'])
                     @case('21120124140161')
@@ -50,8 +50,6 @@
     </div>
 </x-app-layout>
 
-
-{{-- Script tetap di sini --}}
 <script>
     function openModal(modalId, modalContentId, button) {
         const itemData = JSON.parse(button.getAttribute('data-item'));
@@ -92,4 +90,24 @@
             modal.classList.add('hidden');
         }, 300);
     }
+
+    // ================== LIVE SEARCH ==================
+    const searchInput = document.querySelector('input[name="search"]');
+    const gridContainer = document.getElementById('biodataGrid');
+    let searchTimeout = null;
+
+    searchInput.addEventListener('keyup', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value.trim();
+
+        // delay dikit biar gak spam request
+        searchTimeout = setTimeout(() => {
+            fetch(`/biodata/search?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    gridContainer.innerHTML = data.html;
+                })
+                .catch(err => console.error('Search error:', err));
+        }, 100);
+    });
 </script>

@@ -24,6 +24,7 @@ Route::middleware(['checkSession'])->group(function () {
     });
 
     Route::get('/biodata', [MahasiswaController::class, 'index'])->name('biodata.index');
+    Route::get('/biodata/search', [MahasiswaController::class, 'liveSearch'])->name('biodata.search');
 
 
     Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');

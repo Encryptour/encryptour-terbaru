@@ -7,6 +7,24 @@
 @endphp
 {{-- PHP JANGAN DIUBAH!! --}}
 
+{{-- Style (Boleh Diubah) --}}
+<style>
+.card {
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+    transition: background-size 0.5s ease-in-out,
+        background-position 0.5s ease-in-out;
+}
+
+.card:hover {
+    background-size: 70%;
+    background-position: 100%;
+}
+</style>
+{{-- Style (Boleh Diubah) --}}
+
 {{-- Card (Boleh Diubah) --}}
 <div onclick="openModal('{{ $modalId }}', '{{ $modalContentId }}', this)" {{-- Jangan Diubah! --}}
      data-item="{{ json_encode($item) }}" {{-- Jangan Diubah! --}}

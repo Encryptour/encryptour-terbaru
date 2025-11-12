@@ -35,6 +35,9 @@
                     @case('21120124140161')
                         @include('cards.21120124140161_card', ['item' => $item])
                     @break
+                    @case('21120124140163')
+                        @include('cards.21120124140163_card', ['item' => $item])
+                    @break
 
                     @default
                         @include('cards.default_card', ['item' => $item])

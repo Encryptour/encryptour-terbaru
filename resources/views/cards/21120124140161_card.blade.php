@@ -1,5 +1,3 @@
-{{-- default_card.blade.php --}}
-
 {{-- PHP JANGAN DIUBAH!! --}}
 @php
     $modalId = "modal_" . $item['nim'];
@@ -18,7 +16,7 @@
            text-white shadow-md
            transition-all duration-700 ease-in-out
            hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.9)]
-           hover:border-lilac-400">
+           hover:border-lilac-400 bg-purple-300/40">
 
     <!-- Glow Overlay -->
     <div
@@ -54,7 +52,7 @@
 
     <!-- Content -->
     <div class="relative z-10 text-center p-3 sm:p-4 lg:p-6 w-full 
-                bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+                bg-gradient-to-t from-purple-800/50 via-lilac-600/40 to-transparent">
 
         <!-- Nama panggilan -->
         <div class="text-xl sm:text-2xl lg:text-3xl font-extrabold uppercase 

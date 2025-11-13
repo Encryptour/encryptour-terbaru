@@ -30,7 +30,7 @@ Route::middleware(['checkSession'])->group(function () {
     Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
 
     Route::get('/logout', function () {
-        session()->forget('auth');
+        session()->forget(['auth', 'fake_auth']);
         return redirect()->route('login');
     })->name('logout');
 

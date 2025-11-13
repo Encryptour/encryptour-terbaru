@@ -12,16 +12,23 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-         $galleries = Gallery::with('category')
-        ->latest()
-        ->take(6)
-        ->get();
+        if (session('fake_auth') === true) {
+            return view('home', [
+                'data' => null,
+                'carousels' => null,
+                'categories' => null,
+            ]);
+        }
+        $galleries = Gallery::with('category')
+            ->latest()
+            ->take(6)
+            ->get();
         $carousel = Carousel::all();
         $category = Category::all();
-        return view('home',[
+        return view('home', [
             'data' => $galleries,
             'carousels' => $carousel,
-            'categories'=> $category
+            'categories' => $category
         ]);
     }
 }

@@ -14,6 +14,13 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
+        if (session('fake_auth') === true) {
+            return view('biodata', [
+                'data' => null,
+                'order' => null,
+                'searchQuery' => null,
+            ]);
+        }
         $searchQuery = $request->input('search');
         $order = $request->input('order', 'asc');
         $query = mahasiswa::query();

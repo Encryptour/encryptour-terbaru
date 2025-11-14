@@ -48,13 +48,13 @@
             <div id="biodataGrid" class="grid grid-cols-3 gap-6 hidden">
                 @forelse ($data as $item)
                     @switch($item['nim'])
-                        @case('21120124140161')
+                        {{-- @case('21120124140161')
                             @include('cards.21120124140161_card', ['item' => $item])
                         @break
 
                         @case('21120124140163')
                             @include('cards.21120124140163_card', ['item' => $item])
-                        @break
+                        @break --}}
 
                         @default
                             @include('cards.default_card', ['item' => $item])

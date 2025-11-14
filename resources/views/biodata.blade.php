@@ -48,6 +48,10 @@
             <div id="biodataGrid" class="grid grid-cols-3 gap-6 hidden">
                 @forelse ($data as $item)
                     @switch($item['nim'])
+                        @case('10')
+                            @include('cards.default_card', ['item' => $item])
+                        @break
+
                         {{-- @case('21120124140161')
                             @include('cards.21120124140161_card', ['item' => $item])
                         @break
@@ -63,9 +67,9 @@
                         <div>No data found.</div>
                     @endforelse
                 </div>
-            </div>
+        </div>
 
-            {{-- SCRIPT --}}
+        {{-- SCRIPT --}}
         <script>
             // ============ LOADING HANDLER ============
             setTimeout(() => {
@@ -149,9 +153,9 @@
                 location.reload();
             }, 5000);
         </script>
-    @endif
+        @endif
 
-    <style>
+        <style>
             @keyframes spin-reverse {
                 0% {
                     transform: rotate(0deg);
@@ -161,5 +165,5 @@
                     transform: rotate(-360deg);
                 }
             }
-    </style>
-</x-app-layout>
+        </style>
+    </x-app-layout>

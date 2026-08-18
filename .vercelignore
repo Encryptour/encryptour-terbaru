@@ -1,7 +1,5 @@
 node_modules/
-storage/
+.next/
 .git/
-.env
-.idea/
+.env*.local
 *.log
-vendor/

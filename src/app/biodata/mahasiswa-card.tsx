@@ -1,12 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import type { Mahasiswa } from "@/lib/types";
 
-const titleCase = (s: string) =>
-  s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+const titleCase = (s: string) => s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 
-/** resources/views/cards/default_card.blade.php (card half only; the modal is
- *  now a single shared component instead of one per row). */
+/** Grid tile. Photo fills the card; details sit on a scrim along the bottom. */
 export default function MahasiswaCard({
   item,
   onOpen,
@@ -17,19 +16,30 @@ export default function MahasiswaCard({
   return (
     <button
       onClick={() => onOpen(item)}
-      style={{ backgroundImage: `url('${item.formal_picture}')` }}
-      className="card overflow-hidden group flex items-end mx-auto aspect-square xl:w-[350px] lg:w-[280px] sm:w-[210px] w-[108px] transition-all duration-700 ease-in-out border-chocolate border-2 hover:bg-chocolate text-black hover:text-vanilla hover:text-opacity-75"
+      className="group relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-chocolate/25 bg-cards/40 text-left font-mono shadow-sm transition-shadow hover:shadow-xl"
     >
-      <div className="grid grid-cols-2">
-        <div className="flex flex-col mb-2 sm:mb-4 lg:mb-12 ml-1 sm:ml-2 lg:ml-6 z-10 text-left">
-          <div className="text-xs drop-shadow-[1px_-1px_8px_rgba(255,255,255,1)] group-hover:drop-shadow-none sm:text-sm">
-            {titleCase(item.nama_lengkap ?? "")}
-          </div>
-          <div className="hidden sm:block text-2xl uppercase font-bold mb-2">{item.nama_panggilan}</div>
-          <div className="hidden sm:block text-sm">{item.nim}</div>
-          <div className="hidden sm:block text-sm">{item.asal}</div>
-          <div className="hidden sm:block text-sm">{item.mdpl} MDPL</div>
-        </div>
+      {item.formal_picture ? (
+        <Image
+          src={item.formal_picture}
+          alt={item.nama_lengkap ?? item.nim}
+          fill
+          sizes="(min-width:1024px) 20vw, (min-width:640px) 33vw, 50vw"
+          quality={60}
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+        <div className="flex h-full items-center justify-center text-4xl text-chocolate/30">?</div>
+      )}
+
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-chocolate via-chocolate/85 to-transparent p-3 pt-10">
+        <p className="truncate text-[10px] tracking-widest text-vanilla/60">{item.nim}</p>
+        <p className="truncate font-display text-sm font-bold uppercase text-vanilla md:text-base">
+          {item.nama_panggilan || titleCase(item.nama_lengkap ?? "")}
+        </p>
+        <p className="truncate text-[10px] text-vanilla/70">
+          {item.asal}
+          {item.mdpl != null && ` · ${item.mdpl} MDPL`}
+        </p>
       </div>
     </button>
   );

@@ -1,15 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import MahasiswaCard from "./mahasiswa-card";
 import MahasiswaModal from "./mahasiswa-modal";
 import type { Mahasiswa } from "@/lib/types";
 
-/* Font Awesome is only used by this page's controls and the profile modal, so
-   it loads here instead of blocking render on every route. */
-const FA_CSS = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+/** Page-size choices, capped at the number of people actually on file. */
+function pageSizes(total: number) {
+  return [12, 24, 48].filter((n) => n < total).concat(total);
+}
 
 export default function BiodataView({
   items,
@@ -20,19 +20,13 @@ export default function BiodataView({
   search: string;
   order: "asc" | "desc";
 }) {
-  // Injected on mount so only this route pays for the CDN stylesheet + webfont.
-  useEffect(() => {
-    if (document.querySelector(`link[href="${FA_CSS}"]`)) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = FA_CSS;
-    document.head.appendChild(link);
-  }, []);
-
   const router = useRouter();
   const params = useSearchParams();
   const [term, setTerm] = useState(search);
   const [open, setOpen] = useState<Mahasiswa | null>(null);
+  const sizes = useMemo(() => pageSizes(items.length), [items.length]);
+  const [perPage, setPerPage] = useState(sizes[0] ?? 12);
+  const [page, setPage] = useState(1);
 
   // Debounced live search — replaces the /biodata/search JSON+HTML endpoint.
   useEffect(() => {
@@ -45,35 +39,108 @@ export default function BiodataView({
     return () => clearTimeout(t);
   }, [term, search, params, router]);
 
-  return (
-    <div className="container mt-20 mx-auto">
-      <div className="flex flex-wrap justify-between items-center mb-6">
-        <Link href={`/biodata?order=${order === "asc" ? "desc" : "asc"}`}>
-          <button className="flex items-center gap-2 font-semibold">
-            <i className={`fa fa-sort-amount-${order === "asc" ? "desc" : "asc"}`} /> Sort
-          </button>
-        </Link>
+  // A shorter result set can leave the viewer stranded past the last page.
+  const pages = Math.max(1, Math.ceil(items.length / perPage));
+  useEffect(() => setPage(1), [search, order, perPage]);
+  const current = Math.min(page, pages);
+  const shown = items.slice((current - 1) * perPage, current * perPage);
 
-        <div className="flex items-center gap-2">
+  const goSort = () => {
+    const next = new URLSearchParams(params);
+    next.set("order", order === "asc" ? "desc" : "asc");
+    router.replace(`/biodata?${next}`);
+  };
+
+  return (
+    <div className="mx-auto max-w-7xl pb-24 pl-24 pr-6 font-mono lg:px-8">
+      {/* pt clears the floating navbar pill */}
+      <header className="pt-28 lg:pt-36">
+        <p className="mb-2 text-xs tracking-[0.3em] text-mocca">&gt; SELECT * FROM angkatan</p>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-chocolate md:text-6xl">
+          BIODATA
+        </h1>
+        <p className="mt-3 text-sm text-chocolate/70">
+          {items.length} anggota terdaftar{search && ` · hasil untuk “${search}”`}
+        </p>
+      </header>
+
+      <div className="sticky top-24 z-30 -mx-2 mb-8 mt-8 flex flex-wrap items-center gap-3 rounded-2xl border border-chocolate/20 bg-vanilla/90 p-3 backdrop-blur-sm lg:top-28">
+        <label className="flex flex-1 items-center gap-2 rounded-full border border-chocolate/30 px-4 py-2">
+          <span className="text-mocca">&gt;</span>
           <input
             type="text"
             value={term}
             onChange={(e) => setTerm(e.target.value)}
-            placeholder="Search"
+            placeholder="cari nama..."
             aria-label="Search mahasiswa"
-            className="w-[250px] border-b-2 border-chocolate bg-transparent placeholder:text-chocolate placeholder:font-semibold focus:outline-none"
+            className="w-full min-w-0 bg-transparent text-sm text-chocolate placeholder:text-chocolate/40 focus:outline-none"
           />
-          <i className="fa fa-search text-chocolate" />
-        </div>
+        </label>
+
+        <button
+          onClick={goSort}
+          className="rounded-full border border-chocolate/30 px-4 py-2 text-xs uppercase tracking-widest text-chocolate transition-colors hover:bg-chocolate hover:text-vanilla"
+        >
+          mdpl {order === "asc" ? "↑" : "↓"}
+        </button>
+
+        <label className="flex items-center gap-2 text-xs uppercase tracking-widest text-chocolate/70">
+          show
+          <select
+            value={perPage}
+            onChange={(e) => setPerPage(Number(e.target.value))}
+            className="rounded-full border border-chocolate/30 bg-transparent px-3 py-2 text-chocolate focus:outline-none"
+          >
+            {sizes.map((n) => (
+              <option key={n} value={n}>
+                {n === items.length ? `all (${n})` : n}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
-        {items.length ? (
-          items.map((item) => <MahasiswaCard key={item.nim} item={item} onOpen={setOpen} />)
-        ) : (
-          <div>No data found.</div>
-        )}
-      </div>
+      {shown.length ? (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {shown.map((item) => (
+            <MahasiswaCard key={item.nim} item={item} onOpen={setOpen} />
+          ))}
+        </div>
+      ) : (
+        <p className="py-20 text-center text-sm text-chocolate/60">// no data found</p>
+      )}
+
+      {pages > 1 && (
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2 text-xs">
+          <button
+            onClick={() => setPage(current - 1)}
+            disabled={current === 1}
+            className="rounded-full border border-chocolate/30 px-4 py-2 text-chocolate transition-colors hover:bg-chocolate hover:text-vanilla disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-chocolate"
+          >
+            &larr; prev
+          </button>
+          {Array.from({ length: pages }, (_, i) => i + 1).map((n) => (
+            <button
+              key={n}
+              onClick={() => setPage(n)}
+              className={`size-9 rounded-full border transition-colors ${
+                n === current
+                  ? "border-chocolate bg-chocolate text-vanilla"
+                  : "border-chocolate/30 text-chocolate hover:border-chocolate"
+              }`}
+            >
+              {n}
+            </button>
+          ))}
+          <button
+            onClick={() => setPage(current + 1)}
+            disabled={current === pages}
+            className="rounded-full border border-chocolate/30 px-4 py-2 text-chocolate transition-colors hover:bg-chocolate hover:text-vanilla disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-chocolate"
+          >
+            next &rarr;
+          </button>
+        </div>
+      )}
 
       {open && <MahasiswaModal item={open} onClose={() => setOpen(null)} />}
     </div>

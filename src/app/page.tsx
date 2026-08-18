@@ -4,6 +4,7 @@ import LoadingGate from "@/components/loading-gate";
 import HeroCarousel from "@/components/hero-carousel";
 import AboutCarousel from "@/components/about-carousel";
 import GalleryCard from "@/components/gallery-card";
+import Reveal from "@/components/reveal";
 import MobileGallery from "@/components/mobile-gallery";
 import { getHome } from "@/lib/queries";
 
@@ -22,37 +23,46 @@ export default async function HomePage() {
         </section>
 
         <section id="aboutUs">
-          <AboutCarousel />
+          <Reveal>
+            <AboutCarousel />
+          </Reveal>
         </section>
 
-        <div className="flex my-20 md:my-32 items-center justify-center">
-          <div className="w-1/4 md:w-1/3 h-1 bg-chocolate shadow-lg" />
-          <div className="w-4 rounded-full bg-chocolate h-4 shadow-xl" />
-          <div className="text-2xl md:text-4xl md:w-1/3 w-2/4 font-bold flex justify-center text-chocolate">
-            <h2>Our Gallery</h2>
+        <Reveal>
+          {/* Section divider, terminal-flavoured */}
+          <div className="mx-auto my-16 md:my-24 flex max-w-5xl items-center gap-4 pl-24 pr-6 lg:px-6 font-mono text-chocolate">
+            <span className="border border-chocolate/40 px-2 py-1 text-[10px] font-bold tracking-[0.3em] md:text-xs">
+              &lt;/about&gt;
+            </span>
+            <div className="h-[3px] flex-1 bg-[repeating-linear-gradient(to_right,#66391C_0_10px,transparent_10px_18px)]" />
+            <span className="border border-chocolate/40 px-2 py-1 text-[10px] font-bold tracking-[0.3em] md:text-xs">
+              &lt;gallery&gt;
+            </span>
           </div>
-          <div className="w-4 rounded-full bg-chocolate h-4 shadow-xl" />
-          <div className="w-1/4 md:w-1/3 h-1 bg-chocolate shadow-lg" />
-        </div>
+        </Reveal>
 
-        <section id="Gallery" className="container mx-auto mt-20 py-4 px-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-start mb-4 md:mb-8 text-chocolate">
+        <section id="Gallery" className="container mx-auto mt-20 py-4 pl-24 pr-6 lg:px-6">
+          <Reveal>
+          <p className="mb-2 font-mono text-xs tracking-[0.3em] text-mocca">&gt; ls ./gallery</p>
+          <h1 className="mb-4 font-display text-4xl font-bold tracking-tight text-chocolate md:mb-6 md:text-6xl">
             GALLERY
           </h1>
-          <p className="max-w-4xl text-chocolate font-medium md:font-semibold md:text-base text-sm leading-relaxed mb-6">
+          <p className="mb-8 max-w-3xl font-mono text-sm leading-relaxed text-chocolate/70">
             A collection of exciting moments, from projects, achievements, to other memories. Choose a
             category below to check it all out!
           </p>
+          </Reveal>
 
           <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleries.map((item) => (
-              <Link
-                key={item.id}
-                href="/gallery"
-                className="relative w-full h-80 rounded-lg shadow-lg overflow-hidden block"
-              >
-                <GalleryCard item={item} />
-              </Link>
+            {galleries.map((item, i) => (
+              <Reveal key={item.id} delay={(i % 3) * 100}>
+                <Link
+                  href="/gallery"
+                  className="relative block h-80 w-full overflow-hidden rounded-lg shadow-lg"
+                >
+                  <GalleryCard item={item} />
+                </Link>
+              </Reveal>
             ))}
           </div>
 

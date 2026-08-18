@@ -7,6 +7,10 @@ import MahasiswaCard from "./mahasiswa-card";
 import MahasiswaModal from "./mahasiswa-modal";
 import type { Mahasiswa } from "@/lib/types";
 
+/* Font Awesome is only used by this page's controls and the profile modal, so
+   it loads here instead of blocking render on every route. */
+const FA_CSS = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
 export default function BiodataView({
   items,
   search,
@@ -16,6 +20,15 @@ export default function BiodataView({
   search: string;
   order: "asc" | "desc";
 }) {
+  // Injected on mount so only this route pays for the CDN stylesheet + webfont.
+  useEffect(() => {
+    if (document.querySelector(`link[href="${FA_CSS}"]`)) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = FA_CSS;
+    document.head.appendChild(link);
+  }, []);
+
   const router = useRouter();
   const params = useSearchParams();
   const [term, setTerm] = useState(search);

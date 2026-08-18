@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectCoverflow, Navigation } from "swiper/modules";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
 import type { GalleryItem } from "@/lib/types";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 
 /** Mobile-only carousel. Rendered via next/dynamic so Swiper stays out of the
@@ -20,12 +19,12 @@ export default function GallerySwiper({
   onOpen?: (item: GalleryItem) => void;
 }) {
   return (
+    <>
     <Swiper
-      modules={[Navigation, Autoplay, ...(coverflow ? [EffectCoverflow] : [])]}
+      modules={[Autoplay, ...(coverflow ? [EffectCoverflow] : [])]}
       slidesPerView={1}
       spaceBetween={20}
       loop={items.length > 1}
-      navigation
       {...(coverflow
         ? {
             effect: "coverflow" as const,
@@ -36,13 +35,13 @@ export default function GallerySwiper({
     >
       {items.map((item) => (
         <SwiperSlide key={item.id} className="relative">
-          <div className="gallery-item bg-cards/20 rounded-lg shadow-lg overflow-hidden relative">
+          <div className="gallery-item relative overflow-hidden rounded-lg border border-chocolate/20 shadow-lg">
             <div className="absolute inset-0 flex flex-col justify-between p-4 z-10">
               <div>
-                <span className="text-sm bg-mocca text-chocolate py-1 px-2 rounded-full font-semibold uppercase">
+                <span className="border border-vanilla/30 bg-chocolate/80 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-vanilla">
                   {item.category_name ?? "None"}
                 </span>
-                <h3 className="text-xl font-bold mt-2 text-white">{item.title}</h3>
+                <h3 className="mt-2 font-display text-xl font-bold text-vanilla drop-shadow-lg">{item.title}</h3>
               </div>
               {onOpen && (
                 <div className="flex justify-center mt-auto">
@@ -66,5 +65,11 @@ export default function GallerySwiper({
         </SwiperSlide>
       ))}
     </Swiper>
+
+      <p className="mt-4 flex items-center justify-center gap-2 font-mono text-xs tracking-[0.2em] text-chocolate/60">
+        swipe
+        <span className="inline-block animate-[nudge_1.4s_ease-in-out_infinite]">&rarr;</span>
+      </p>
+    </>
   );
 }

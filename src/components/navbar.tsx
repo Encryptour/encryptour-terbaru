@@ -2,91 +2,100 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Icon from "./icons";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/", label: "Home", icon: "fa-home" },
-  { href: "/identity", label: "Identity", icon: "fa-info-circle" },
-  { href: "/biodata", label: "Biodata", icon: "fa-users" },
-  { href: "/gallery", label: "Gallery", icon: "fa-picture-o" },
+  { href: "/", label: "Home", icon: "home" },
+  { href: "/identity", label: "Identity", icon: "info" },
+  { href: "/biodata", label: "Biodata", icon: "users" },
+  { href: "/gallery", label: "Gallery", icon: "image" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="sticky z-50">
-      <div className="max-w-full px-2 sm:px-4 lg:px-8 bg-mocca items-center fixed top-0 left-0 w-full shadow-md p-2 md:p-4 z-10 drop-shadow-xl">
-        <div className="flex items-center justify-between h-10">
-          <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-vanilla">
+    <>
+      <Rail pathname={pathname} />
+    <nav className="hidden lg:flex fixed inset-x-0 top-0 z-50 justify-center px-3 sm:px-4">
+      <div
+        className={`mt-3 w-full max-w-[1600px] origin-top rounded-full border border-vanilla/20 px-5 py-3 shadow-lg md:px-8 will-change-transform transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          scrolled ? "scale-[0.86] bg-mocca/60 backdrop-blur-md" : "scale-100 bg-mocca"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center gap-2 text-vanilla">
             <Image
-              src="/assets/Logo Encryptour.png"
+              src="/assets/logo.webp"
               alt="Logo Encryptour"
               width={60}
               height={60}
               priority
-              className="h-10 w-auto md:h-14"
+              className="h-10 w-auto md:h-12"
             />
-            <span className="hidden sm:inline">ENCRYPTOUR</span>
+            <span
+              className="hidden font-display text-xl font-bold tracking-tight sm:inline md:text-2xl"
+            >
+              ENCRYPTOUR
+            </span>
           </Link>
 
-          <div className="hidden sm:flex sm:ml-auto lg:mr-4 font-semibold">
-            <div className="flex space-x-10 items-center transition-all">
-              {links.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className={`${pathname === l.href ? "underline underline-offset-4 animate-floatglow" : ""} rounded-md px-3 py-2 text-md font-semibold text-vanilla hover:bg-chocolate transition-all duration-300 transform hover:scale-105 hover:-translate-y-1`}
-                >
-                  <i className={`fa ${l.icon}`} /> {l.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="sm:hidden">
-            <button
-              type="button"
-              aria-label="Open main menu"
-              aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-              className="relative transition-all duration-300 inline-flex items-center justify-center rounded-md p-2 text-vanilla focus:outline-none focus:ring-2 focus:ring-inset focus:ring-vanilla"
-            >
-              <svg className="size-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d={open ? "M6 18 18 6M6 6l12 12" : "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}
-                />
-              </svg>
-            </button>
+          <div className="flex items-center gap-1 font-mono text-sm">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`rounded-full px-4 py-2 tracking-tight text-vanilla transition-colors duration-200 hover:bg-chocolate ${
+                  pathname === l.href ? "bg-chocolate/80" : ""
+                }`}
+              >
+                <Icon name={l.icon} /> {l.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
+    </nav>
+    </>
+  );
+}
 
-      {/* Mobile drawer */}
-      <div
-        onClick={(e) => e.target === e.currentTarget && setOpen(false)}
-        className={`sm:hidden w-full h-full fixed flex justify-end z-40 mt-12 ${open ? "" : "hidden"}`}
-      >
-        <div
-          className={`space-y-1 bg-mocca px-4 pb-6 pt-4 w-2/3 h-full shadow-lg transition-all duration-300 ${
-            open ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
-          }`}
-        >
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block rounded-md px-3 py-2 text-base font-semibold text-vanilla hover:bg-chocolate"
-            >
-              <i className={`fa ${l.icon}`} /> {l.label}
-            </Link>
-          ))}
-        </div>
+/** Mobile + tablet: a floating vertical rail on the left, Linux-dock style. */
+function Rail({ pathname }: { pathname: string }) {
+  return (
+    <nav className="lg:hidden fixed left-3 top-1/2 z-50 -translate-y-1/2">
+      <div className="flex flex-col items-center gap-1 rounded-full border border-vanilla/20 bg-mocca/80 p-2 shadow-lg backdrop-blur-md">
+        <Image
+          src="/assets/logo.webp"
+          alt="Logo Encryptour"
+          width={40}
+          height={40}
+          priority
+          className="mb-1 h-8 w-8 object-contain"
+        />
+        {links.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            aria-label={l.label}
+            title={l.label}
+            className={`flex size-10 items-center justify-center rounded-full text-vanilla transition-colors ${
+              pathname === l.href ? "bg-chocolate" : "hover:bg-chocolate/70"
+            }`}
+          >
+            <Icon name={l.icon} className="size-5" />
+          </Link>
+        ))}
       </div>
     </nav>
   );

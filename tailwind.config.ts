@@ -10,9 +10,21 @@ export default {
         mocca: "#AD7D4F",
         cards: "#F2E5BF",
       },
-      fontFamily: { montserrat: ["var(--font-montserrat)", "Montserrat", "sans-serif"] },
+      fontFamily: {
+        montserrat: ["var(--font-montserrat)", "Montserrat", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        display: ["var(--font-display)", "Montserrat", "sans-serif"],
+      },
       gradientColorStopPositions: { 65: "65%" },
       keyframes: {
+        nudge: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(5px)" },
+        },
+        fadeIn: {
+          from: { opacity: "0", transform: "translateY(6px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-5px)" },

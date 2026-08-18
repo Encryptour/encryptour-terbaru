@@ -6,19 +6,19 @@ export default function GalleryCard({ item }: { item: GalleryItem }) {
   return (
     <>
       <div className="absolute inset-0">
-        <Image src={item.img} alt={item.title} fill sizes="(min-width:1024px) 33vw, 100vw" className="object-cover" />
+        <Image src={item.img} alt={item.title} fill sizes="(min-width:1024px) 33vw, 100vw" quality={65} className="object-cover" />
         <div className="absolute inset-0 bg-black/40" />
       </div>
-      <div className="absolute top-3 right-3 backdrop-blur-md bg-chocolate/40 rounded-full px-3 py-1">
-        <span className="text-xs text-white font-semibold uppercase">
+      <div className="absolute top-3 right-3 border border-vanilla/30 bg-chocolate/80 px-3 py-1 font-mono">
+        <span className="text-[10px] tracking-widest text-vanilla uppercase">
           {item.category_name ?? "None"}
         </span>
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-4">
-        <div className="backdrop-blur-sm bg-mocca/40 rounded-lg px-3 py-2">
-          <h3 className="text-lg font-bold text-white">{item.title}</h3>
+        <div className="bg-chocolate/80 px-3 py-2">
+          <h3 className="font-display text-lg font-bold text-vanilla">{item.title}</h3>
         </div>
-        <p className="text-white/90 text-sm mt-2 line-clamp-3">{item.description}</p>
+        <p className="mt-2 font-mono text-xs leading-relaxed text-vanilla/80 line-clamp-3">{item.description}</p>
       </div>
     </>
   );

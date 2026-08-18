@@ -1,79 +1,99 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { CarouselItem } from "@/lib/types";
 
 export default function HeroCarousel({ items }: { items: CarouselItem[] }) {
   const [index, setIndex] = useState(0);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const total = items.length;
-
-  const go = useCallback((n: number) => setIndex(((n % total) + total) % total), [total]);
 
   useEffect(() => {
     if (total < 2) return;
-    // First slide lingers 10s (it carries the welcome overlay), the rest 3s.
-    timer.current = setTimeout(() => go(index + 1), index === 0 ? 10000 : 3000);
-    return () => clearTimeout(timer.current);
-  }, [index, total, go]);
+    const t = setInterval(() => setIndex((i) => (i + 1) % total), 5000);
+    return () => clearInterval(t);
+  }, [total]);
 
   if (!total) return null;
 
   return (
-    <div className="relative w-full h-[80vh] md:h-[70vh] overflow-hidden mt-14 md:mt-16">
+    <div className="relative w-full h-[100svh] md:h-[92vh] overflow-hidden font-mono">
+      {items.map((item, i) => {
+        // Only the current/adjacent slides stay mounted — the rest never hit the network.
+        const near = i === index || i === (index + 1) % total || i === (index - 1 + total) % total;
+        if (!near) return null;
+        return (
+          <Image
+          key={item.id}
+          src={item.img}
+          alt={`Slide ${i + 1}`}
+          fill
+          sizes="100vw"
+            priority={i === 0}
+            quality={70}
+            className={`object-cover object-center transition-opacity duration-1000 ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        );
+      })}
+
+      {/* Scrim: hard-stop gradient = blocky "pixel" steps instead of a smooth fade. */}
       <div
-        className="flex transition-transform duration-500 h-full"
-        style={{ transform: `translateX(-${index * 100}%)` }}
-      >
-        {items.map((item, i) => (
-          <div key={item.id} className="w-full h-full flex-shrink-0 relative snap-center">
-            {i === 0 && (
-              <div className="w-full h-full flex justify-center items-center bg-gradient-to-b absolute z-10 from-black/50 via-transparent to-black/30">
-                <h1 className="text-2xl md:text-5xl drop-shadow-2xl rounded-xl bg-black/5 p-4 backdrop-blur-[1px] font-bold text-vanilla">
-                  WELCOME TO OUR PAGE
-                </h1>
-              </div>
-            )}
-            <Image
-              src={item.img}
-              alt={`Slide ${i + 1}`}
-              fill
-              sizes="100vw"
-              priority={i === 0}
-              className="object-cover object-center"
-            />
-          </div>
-        ))}
-      </div>
+        className="absolute inset-0 z-10"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(0,0,0,.85) 0 30%, rgba(0,0,0,.7) 30% 45%, rgba(0,0,0,.55) 45% 58%, rgba(0,0,0,.4) 58% 70%, rgba(0,0,0,.25) 70% 82%, rgba(0,0,0,.1) 82% 100%)",
+        }}
+      />
+      {/* Checker dither over the step edges, sells the pixel look. */}
+      <div
+        className="absolute inset-0 z-10 opacity-40"
+        style={{
+          backgroundImage:
+            "linear-gradient(45deg, rgba(0,0,0,.5) 25%, transparent 25% 75%, rgba(0,0,0,.5) 75%), linear-gradient(45deg, rgba(0,0,0,.5) 25%, transparent 25% 75%, rgba(0,0,0,.5) 75%)",
+          backgroundSize: "12px 12px",
+          backgroundPosition: "0 0, 6px 6px",
+          maskImage: "linear-gradient(to right, black 20%, transparent 85%)",
+          WebkitMaskImage: "linear-gradient(to right, black 20%, transparent 85%)",
+        }}
+      />
 
-      <button
-        aria-label="Previous slide"
-        onClick={() => go(index - 1)}
-        className="absolute top-1/2 left-2 -translate-y-1/2 text-lg hover:text-2xl bg-black/10 hover:bg-black/30 transition-all backdrop-blur-sm text-white/50 w-[4vh] h-[4vh] rounded-full"
-      >
-        ˂
-      </button>
-      <button
-        aria-label="Next slide"
-        onClick={() => go(index + 1)}
-        className="absolute top-1/2 right-2 -translate-y-1/2 text-lg hover:text-2xl bg-black/10 hover:bg-black/30 transition-all backdrop-blur-sm text-white/50 w-[4vh] h-[4vh] rounded-full"
-      >
-        ˃
-      </button>
+      <div className="absolute inset-0 z-20 flex flex-col justify-center gap-5 pl-24 pr-6 lg:px-20 [text-shadow:0_2px_12px_rgba(0,0,0,0.9)]">
+        <p className="text-xs md:text-sm tracking-[0.3em] text-mocca">&gt; ENCRYPTOUR_2024</p>
+        <h1 className="max-w-4xl text-2xl md:text-5xl font-bold leading-tight tracking-tight text-vanilla">
+          Integrity, Unbreakable,
+          <br />
+          We Are Competent<span className="text-mocca">!!!</span>
+        </h1>
+        <p className="max-w-2xl text-xs md:text-sm leading-relaxed text-vanilla/70">
+          Encryptour = <span className="text-vanilla">EN</span>gineers of{" "}
+          <span className="text-vanilla">Compu</span>ter, <span className="text-vanilla">Y</span>oung
+          Pioneers <span className="text-vanilla">T</span>wenty f<span className="text-vanilla">OUR</span>.
+          Mahasiswa Teknik Komputer angkatan 2024.
+        </p>
+        <a
+          href="#aboutUs"
+          className="w-fit border border-chocolate bg-vanilla px-6 py-3 text-xs md:text-sm font-bold tracking-widest text-chocolate transition-colors duration-300 hover:bg-chocolate hover:text-vanilla"
+        >
+          CHECK US OUT
+        </a>
 
-      <div className="absolute bottom-0 left-0 right-0 flex justify-center space-x-2 bg-gradient-to-t md:from-vanilla/80 from-vanilla w-full pb-12 pt-4">
+        <div className="mt-6 flex gap-2">
         {items.map((item, i) => (
-          <button
+          <span
             key={item.id}
-            aria-label={`Slide ${i + 1}`}
-            onClick={() => go(i)}
-            className={`shadow-xl h-2 rounded-full transition-all duration-500 ${
-              i === index ? "w-10 bg-chocolate opacity-100" : "w-3 bg-vanilla opacity-50"
+            className={`h-[3px] transition-all duration-500 ${
+              i === index ? "w-8 bg-vanilla" : "w-3 bg-vanilla/40"
             }`}
           />
         ))}
+        </div>
       </div>
+
+      {/* Melts the hero into the vanilla page background. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-vanilla via-vanilla/70 to-transparent" />
+
     </div>
   );
 }

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::-webkit-scrollbar {
+    @apply hidden;
+  }
+}
+
+/* Card hover zoom — was inlined in every Blade card partial. */
+.card {
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  transition: background-size 0.5s ease-in-out, background-position 0.5s ease-in-out;
+}
+.card:hover {
+  background-size: 70%;
+  background-position: 100%;
+}
+
+/* Swiper look from the Blade <style> blocks. */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #66391c;
+  stroke-width: 30px;
+}
+.swiper-image {
+  height: 500px;
+  object-fit: cover;
+  object-position: center center;
+}
+@media (max-width: 768px) {
+  .swiper-slide {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50px;
+  }
+}
